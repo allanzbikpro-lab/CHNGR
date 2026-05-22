@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chngr — Guide GitHub Pages</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0D1117;
+  --bg2: #161B22;
+  --bg3: #1C2128;
+  --surface: #21262D;
+  --surface2: #30363D;
+  --accent: #C8FF00;
+  --accent2: #A8E000;
+  --accent-dim: #C8FF0012;
+  --accent-dim2: #C8FF0025;
+  --text: #E6EDF3;
+  --text2: #8B949E;
+  --text3: #484F58;
+  --border: #30363D;
+  --border2: #3D444D;
+  --green: #3FB950;
+  --green-dim: #3FB95015;
+  --blue: #58A6FF;
+  --blue-dim: #58A6FF12;
+  --purple: #BC8CFF;
+  --purple-dim: #BC8CFF12;
+  --orange: #FFA657;
+  --orange-dim: #FFA65712;
+  --red: #F85149;
+  --red-dim: #F8514912;
+  --yellow: #D29922;
+  --r: 12px;
+  --r-sm: 8px;
+  --font-ui: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── LAYOUT ─────────────────────────────── */
+.page { display: flex; min-height: 100vh; }
+
+/* ── SIDEBAR ─────────────────────────────── */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 28px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  padding: 0 24px 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.logo-mark {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.04em;
+}
+.logo-mark span { color: var(--accent); }
+
+.logo-sub {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 4px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.sidebar-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0 24px;
+  margin-bottom: 6px;
+  font-family: var(--font-ui);
+}
+
+.sidebar-nav { list-style: none; padding: 0 12px; margin-bottom: 24px; }
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--text2);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.sidebar-nav li a:hover { background: var(--surface); color: var(--text); }
+.sidebar-nav li a.active { background: var(--accent-dim2); color: var(--accent); }
+
+.sidebar-nav li a .nav-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text3);
+  flex-shrink: 0;
+}
+
+.sidebar-nav li a.active .nav-num { background: var(--accent); color: #0D1117; }
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 20px 24px 0;
+  border-top: 1px solid var(--border);
+}
+
+.time-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  color: var(--text2);
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.time-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+/* ── MAIN ─────────────────────────────── */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 48px 56px 100px;
+  max-width: 860px;
+}
+
+/* ── HERO ─────────────────────────────── */
+.hero {
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: var(--green-dim);
+  border: 1px solid #3FB95030;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  font-family: var(--font-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: var(--font-ui);
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.hero h1 .accent { color: var(--accent); }
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.htag {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  border: 1px solid;
+  letter-spacing: 0.03em;
+}
+
+.htag-free { background: var(--green-dim); color: var(--green); border-color: #3FB95030; }
+.htag-url { background: var(--blue-dim); color: var(--blue); border-color: #58A6FF30; }
+.htag-ssl { background: var(--purple-dim); color: var(--purple); border-color: #BC8CFF30; }
+.htag-time { background: var(--surface); color: var(--text2); border-color: var(--border); }
+
+/* ── OVERVIEW CARDS ─────────────────────── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 56px;
+}
+
+.ov-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+
+.ov-card:hover { border-color: var(--border2); }
+
+.ov-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.ov-title {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.ov-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* ── SECTION ─────────────────────────────── */
+.guide-section {
+  margin-bottom: 64px;
+  scroll-margin-top: 32px;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.section-num-big {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--accent);
+  color: #0D1117;
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.section-head-text {}
+
+.section-num-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-ui);
+  margin-bottom: 4px;
+}
+
+.section-head h2 {
+  font-family: var(--font-ui);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.section-head p { font-size: 14px; color: var(--text2); }
+
+/* ── STEPS ─────────────────────────────── */
+.steps { display: flex; flex-direction: column; }
+
+.step {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 32px;
+  position: relative;
+}
+
+.step::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 36px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.step:last-child::before { display: none; }
+
+.step-bullet {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: var(--font-ui);
+  color: var(--text2);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.step-bullet.done { background: var(--green); border-color: var(--green); color: #0D1117; }
+.step-bullet.warn { background: var(--orange-dim); border-color: var(--orange); color: var(--orange); }
+
+.step-body { flex: 1; padding-top: 4px; }
+
+.step-title {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.step-text { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; }
+.step-text:last-child { margin-bottom: 0; }
+.step-text strong { color: var(--text); font-weight: 500; }
+.step-text code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--surface);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+/* ── GITHUB UI MOCKUPS ─────────────────── */
+.gh-window {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin: 16px 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.gh-titlebar {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gh-dots { display: flex; gap: 6px; }
+.gh-dot { width: 10px; height: 10px; border-radius: 50%; }
+.gh-dot-r { background: #FF5F57; }
+.gh-dot-y { background: #FFBD2E; }
+.gh-dot-g { background: #28C840; }
+
+.gh-url-bar {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gh-lock { color: var(--green); font-size: 10px; }
+
+.gh-body { padding: 0; }
+
+/* GitHub interface components */
+.gh-repo-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+}
+
+.gh-repo-icon { font-size: 18px; }
+.gh-repo-path { color: var(--blue); font-size: 14px; font-weight: 500; }
+.gh-repo-slash { color: var(--text3); }
+.gh-repo-vis {
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 11px;
+  color: var(--text2);
+  font-weight: 600;
+  font-family: var(--font-ui);
+}
+
+.gh-tabs {
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 0;
+  font-family: var(--font-body);
+}
+
+.gh-tab {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+}
+
+.gh-tab.active {
+  color: var(--text);
+  border-bottom: 2px solid var(--orange);
+  font-weight: 600;
+}
+
+.gh-tab-count {
+  background: var(--surface2);
+  padding: 1px 7px;
+  border-radius: 100px;
+  font-size: 11px;
+}
+
+.gh-file-list { font-family: var(--font-body); }
+
+.gh-file-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.gh-file-row:last-child { border-bottom: none; }
+
+.gh-file-icon { font-size: 16px; width: 20px; text-align: center; flex-shrink: 0; }
+.gh-file-name { color: var(--blue); flex: 1; }
+.gh-file-commit { color: var(--text2); font-size: 12px; flex: 2; }
+.gh-file-date { color: var(--text3); font-size: 12px; white-space: nowrap; }
+
+.gh-settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.gh-settings-row:last-child { border-bottom: none; }
+.gh-settings-label { color: var(--text); font-weight: 500; }
+.gh-settings-sub { color: var(--text2); font-size: 12px; margin-top: 2px; }
+
+.gh-select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gh-btn {
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+}
+
+.gh-btn-green { background: #238636; color: #fff; border: 1px solid #2EA043; }
+.gh-btn-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid #58A6FF30; }
+.gh-btn-default { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+.gh-pages-box {
+  background: var(--green-dim);
+  border: 1px solid #3FB95040;
+  border-radius: var(--r-sm);
+  padding: 14px 18px;
+  margin: 0 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gh-pages-icon { font-size: 20px; }
+.gh-pages-url { color: var(--blue); font-size: 13px; font-family: var(--font-body); text-decoration: underline; }
+.gh-pages-status { color: var(--green); font-size: 11px; font-weight: 700; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── TERMINAL ─────────────────────────── */
+.terminal {
+  background: #0D1117;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.terminal-bar {
+  background: var(--bg3);
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-dots { display: flex; gap: 5px; }
+.terminal-dot { width: 9px; height: 9px; border-radius: 50%; }
+.terminal-label {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex: 1;
+  text-align: center;
+}
+
+.terminal-body { padding: 18px 20px; font-family: var(--font-mono); font-size: 13px; line-height: 2; }
+
+.t-prompt { color: var(--green); }
+.t-path { color: var(--blue); }
+.t-cmd { color: var(--text); }
+.t-arg { color: var(--orange); }
+.t-str { color: var(--accent); }
+.t-comment { color: var(--text3); font-style: italic; }
+.t-out { color: var(--text2); }
+.t-success { color: var(--green); }
+.t-url { color: var(--blue); text-decoration: underline; }
+
+/* ── CALLOUTS ─────────────────────────── */
+.callout {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--r-sm);
+  margin: 14px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.callout-body { flex: 1; }
+.callout-body strong { font-weight: 600; }
+
+.c-info { background: var(--blue-dim); border: 1px solid #58A6FF25; color: #90C8FF; }
+.c-info strong { color: var(--blue); }
+.c-warn { background: var(--orange-dim); border: 1px solid #FFA65730; color: #FFD0A0; }
+.c-warn strong { color: var(--orange); }
+.c-success { background: var(--green-dim); border: 1px solid #3FB95030; color: #90D8A8; }
+.c-success strong { color: var(--green); }
+.c-tip { background: var(--purple-dim); border: 1px solid #BC8CFF25; color: #D0B0FF; }
+.c-tip strong { color: var(--purple); }
+
+/* ── CHECKLIST ─────────────────────────── */
+.checklist { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+
+.ci {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+.ci-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--border2);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ci strong { color: var(--text); font-weight: 500; }
+
+/* ── COMPARISON TABLE ─────────────────── */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.compare-table th {
+  background: var(--bg3);
+  padding: 11px 16px;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--border);
+}
+
+.compare-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+  vertical-align: top;
+}
+
+.compare-table tr:last-child td { border-bottom: none; }
+
+.compare-table td:first-child { color: var(--text); font-weight: 500; }
+.compare-table tr:hover td { background: var(--bg2); }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-ui);
+}
+
+.b-green { background: var(--green-dim); color: var(--green); }
+.b-orange { background: var(--orange-dim); color: var(--orange); }
+.b-blue { background: var(--blue-dim); color: var(--blue); }
+.b-red { background: var(--red-dim); color: var(--red); }
+
+/* ── URL RESULT ─────────────────────────── */
+.url-result {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.url-result-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-ui);
+  margin-bottom: 10px;
+}
+
+.url-result-value {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--blue);
+  font-weight: 700;
+  word-break: break-all;
+  letter-spacing: 0.01em;
+}
+
+/* ── DIVIDER ─────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 56px 0;
+}
+
+/* ── FINAL CHECKLIST ─────────────────────── */
+.final-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.final-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px;
+}
+
+.final-card-icon { font-size: 24px; margin-bottom: 8px; }
+.final-card-title { font-family: var(--font-ui); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.final-card-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* ── FOOTER ─────────────────────────────── */
+.doc-footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.footer-logo { font-family: var(--font-ui); font-weight: 800; color: var(--text2); letter-spacing: -0.02em; }
+.footer-logo span { color: var(--accent); }
+
+/* ── RESPONSIVE ─────────────────────────── */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { padding: 32px 24px 80px; }
+  .overview-grid { grid-template-columns: 1fr; }
+  .final-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 30px; }
+}
+
+@media print {
+  .sidebar { display: none; }
+  .main { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ── SIDEBAR ─────────────────────────── -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">Chn<span>gr</span></div>
+    <div class="logo-sub">Guide d'hébergement</div>
+  </div>
+
+  <div class="sidebar-section-title">Sommaire</div>
+  <ul class="sidebar-nav">
+    <li><a href="#intro" class="active"><span class="nav-num">✦</span> Introduction</a></li>
+    <li><a href="#etape1"><span class="nav-num">1</span> Créer un compte GitHub</a></li>
+    <li><a href="#etape2"><span class="nav-num">2</span> Créer un repository</a></li>
+    <li><a href="#etape3"><span class="nav-num">3</span> Uploader les fichiers</a></li>
+    <li><a href="#etape4"><span class="nav-num">4</span> Activer GitHub Pages</a></li>
+    <li><a href="#etape5"><span class="nav-num">5</span> Accéder à l'URL finale</a></li>
+    <li><a href="#etape6"><span class="nav-num">6</span> Mettre à jour l'app</a></li>
+    <li><a href="#raccourcis"><span class="nav-num">⚡</span> Sync Raccourcis</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">Ressources</div>
+  <ul class="sidebar-nav">
+    <li><a href="https://github.com" target="_blank"><span class="nav-num">↗</span> github.com</a></li>
+    <li><a href="index.html"><span class="nav-num">↗</span> Chngr App</a></li>
+  </ul>
+
+  <div class="sidebar-bottom">
+    <div class="time-badge">
+      <div class="time-dot"></div>
+      Durée estimée : 15 min
+    </div>
+  </div>
+</aside>
+
+<!-- ── MAIN ─────────────────────────────── -->
+<main class="main">
+
+  <!-- HERO -->
+  <div id="intro" class="hero">
+    <div class="hero-eyebrow">
+      <span>🐙</span> GitHub Pages — Hébergement Gratuit
+    </div>
+    <h1>Héberger <span class="accent">Chngr</span><br>sur GitHub Pages</h1>
+    <p class="hero-desc">
+      GitHub Pages transforme ton dépôt de code en site web accessible depuis n'importe quel appareil.
+      Gratuit, sécurisé en HTTPS, et ta Chngr aura une vraie URL permanente pour la synchro Raccourcis.
+    </p>
+    <div class="hero-tags">
+      <span class="htag htag-free">✓ 100% Gratuit</span>
+      <span class="htag htag-url">🔗 URL permanente</span>
+      <span class="htag htag-ssl">🔒 HTTPS automatique</span>
+      <span class="htag htag-time">⏱ ~15 minutes</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview-grid">
+    <div class="ov-card">
+      <span class="ov-icon">🌍</span>
+      <div class="ov-title">Accessible partout</div>
+      <p class="ov-text">Ton app Chngr sera disponible depuis ton iPhone, iPad, Mac ou n'importe quel navigateur via une URL fixe.</p>
+    </div>
+    <div class="ov-card">
+      <span class="ov-icon">⚡</span>
+      <div class="ov-title">Raccourcis iOS prêt</div>
+      <p class="ov-text">L'URL permanente GitHub Pages sera ta vraie URL de synchro à coller dans le raccourci Apple Santé.</p>
+    </div>
+    <div class="ov-card">
+      <span class="ov-icon">🔄</span>
+      <div class="ov-title">Mise à jour facile</div>
+      <p class="ov-text">Pour mettre Chngr à jour, tu remplace juste le fichier sur GitHub. Le site se met à jour automatiquement.</p>
+    </div>
+  </div>
+
+  <!-- ── ÉTAPE 1 ─────────────────────────── -->
+  <section id="etape1" class="guide-section">
+    <div class="section-head">
+      <div class="section-num-big">1</div>
+      <div class="section-head-text">
+        <div class="section-num-label">Étape 1 sur 6</div>
+        <h2>Créer un compte GitHub</h2>
+        <p>Si tu as déjà un compte GitHub, passe directement à l'étape 2.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-bullet">1</div>
+        <div class="step-body">
+          <div class="step-title">Aller sur github.com</div>
+          <p class="step-text">Ouvre <strong>github.com</strong> dans ton navigateur. Clique sur le bouton <strong>«&nbsp;Sign up&nbsp;»</strong> en haut à droite.</p>
+
+          <div class="gh-window">
+            <div class="gh-titlebar">
+              <div class="gh-dots">
+                <div class="gh-dot gh-dot-r"></div>
+                <div class="gh-dot gh-dot-y"></div>
+                <div class="gh-dot gh-dot-g"></div>
+              </div>
+              <div class="gh-url-bar">
+                <span class="gh-lock">🔒</span>
+                github.com
+              </div>
+            </div>
+            <div class="gh-body" style="padding:28px;text-align:center;font-family:var(--font-body)">
+              <div style="font-size:32px;margin-bottom:12px">🐙</div>
+              <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px">Bienvenue sur GitHub</div>
+              <div style="font-size:14px;color:var(--text2);margin-bottom:20px">La plateforme pour les développeurs — et les non-développeurs aussi.</div>
+              <div style="display:flex;gap:10px;justify-content:center">
+                <div class="gh-btn gh-btn-green">Sign up</div>
+                <div class="gh-btn gh-btn-default">Sign in</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">2</div>
+        <div class="step-body">
+          <div class="step-title">Remplir le formulaire d'inscription</div>
+          <p class="step-text">GitHub va te demander :</p>
+          <div class="checklist">
+            <div class="ci"><div class="ci-box"></div><div><strong>Email</strong> — ton adresse e-mail principale</div></div>
+            <div class="ci"><div class="ci-box"></div><div><strong>Mot de passe</strong> — minimum 8 caractères</div></div>
+            <div class="ci"><div class="ci-box"></div><div><strong>Username</strong> — ton identifiant public (ex: <code>thomas-martin</code>). Ce nom fera partie de ton URL finale : <code>thomas-martin.github.io/chngr</code></div></div>
+          </div>
+          <div class="callout c-tip">
+            <span class="callout-icon">💡</span>
+            <div class="callout-body"><strong>Choisis bien ton username</strong> — il sera visible dans l'URL de ton application. Opte pour quelque chose de court et professionnel. Il n'est pas modifiable facilement après coup.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">3</div>
+        <div class="step-body">
+          <div class="step-title">Vérifier ton email et finaliser</div>
+          <p class="step-text">GitHub envoie un email de confirmation. Clique sur le lien dans l'email pour activer ton compte. Tu es maintenant connecté.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── ÉTAPE 2 ─────────────────────────── -->
+  <section id="etape2" class="guide-section">
+    <div class="section-head">
+      <div class="section-num-big">2</div>
+      <div class="section-head-text">
+        <div class="section-num-label">Étape 2 sur 6</div>
+        <h2>Créer un repository</h2>
+        <p>Un repository (ou "repo") est le dossier en ligne qui contiendra les fichiers de Chngr.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-bullet">1</div>
+        <div class="step-body">
+          <div class="step-title">Créer un nouveau repository</div>
+          <p class="step-text">Une fois connecté, clique sur le <strong>«&nbsp;+&nbsp;»</strong> en haut à droite → <strong>«&nbsp;New repository&nbsp;»</strong>. Ou va directement sur <strong>github.com/new</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">2</div>
+        <div class="step-body">
+          <div class="step-title">Configurer le repository</div>
+          <p class="step-text">Remplis le formulaire de création :</p>
+
+          <div class="gh-window" style="margin-top:12px">
+            <div class="gh-titlebar">
+              <div class="gh-dots"><div class="gh-dot gh-dot-r"></div><div class="gh-dot gh-dot-y"></div><div class="gh-dot gh-dot-g"></div></div>
+              <div class="gh-url-bar"><span class="gh-lock">🔒</span>github.com/new</div>
+            </div>
+            <div style="padding:20px;font-family:var(--font-body)">
+              <div style="margin-bottom:16px">
+                <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Repository name *</div>
+                <div style="background:var(--bg);border:1px solid var(--blue);border-radius:6px;padding:9px 14px;font-size:14px;color:var(--text);display:flex;align-items:center;gap:8px">
+                  <span style="color:var(--accent);font-weight:700">chngr</span>
+                  <span style="font-size:11px;background:var(--green-dim);color:var(--green);padding:2px 8px;border-radius:100px;font-weight:700">✓ Disponible</span>
+                </div>
+              </div>
+              <div style="margin-bottom:16px">
+                <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Visibilité</div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:6px">
+                    <div style="width:16px;height:16px;border-radius:50%;border:2px solid var(--blue);background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px"><div style="width:6px;height:6px;border-radius:50%;background:white"></div></div>
+                    <div><div style="font-size:13px;font-weight:600;color:var(--text)">🔓 Public</div><div style="font-size:12px;color:var(--text2);margin-top:2px">Tout le monde peut voir ce repository. <strong style="color:var(--green)">Requis pour GitHub Pages gratuit.</strong></div></div>
+                  </div>
+                  <div style="display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;opacity:0.5">
+                    <div style="width:16px;height:16px;border-radius:50%;border:2px solid var(--border2);flex-shrink:0;margin-top:2px"></div>
+                    <div><div style="font-size:13px;font-weight:600;color:var(--text2)">🔒 Private</div><div style="font-size:12px;color:var(--text3);margin-top:2px">GitHub Pages nécessite un abonnement payant.</div></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-bottom:20px">
+                <div style="display:flex;align-items:center;gap:8px;padding:10px;background:var(--bg);border:1px solid var(--border);border-radius:6px">
+                  <div style="width:16px;height:16px;border-radius:4px;background:var(--blue);display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:10px">✓</span></div>
+                  <div style="font-size:13px;color:var(--text)">Initialiser avec un README</div>
+                </div>
+              </div>
+              <div class="gh-btn gh-btn-green" style="width:100%;justify-content:center;padding:10px">Create repository</div>
+            </div>
+          </div>
+
+          <div class="callout c-warn">
+            <span class="callout-icon">⚠️</span>
+            <div class="callout-body"><strong>Repository en Public obligatoire</strong> pour utiliser GitHub Pages gratuitement. Tes fichiers HTML seront visibles (code source), mais tes données de pesées restent dans ton iPhone (localStorage) — elles ne sont pas dans les fichiers.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── ÉTAPE 3 ─────────────────────────── -->
+  <section id="etape3" class="guide-section">
+    <div class="section-head">
+      <div class="section-num-big">3</div>
+      <div class="section-head-text">
+        <div class="section-num-label">Étape 3 sur 6</div>
+        <h2>Uploader les fichiers Chngr</h2>
+        <p>On va déposer tes fichiers directement depuis le navigateur, sans ligne de commande.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-bullet">1</div>
+        <div class="step-body">
+          <div class="step-title">Ouvrir ton repository sur GitHub</div>
+          <p class="step-text">Tu arrives sur la page de ton nouveau repository qui ressemble à ça :</p>
+
+          <div class="gh-window">
+            <div class="gh-titlebar">
+              <div class="gh-dots"><div class="gh-dot gh-dot-r"></div><div class="gh-dot gh-dot-y"></div><div class="gh-dot gh-dot-g"></div></div>
+              <div class="gh-url-bar"><span class="gh-lock">🔒</span>github.com/<span style="color:var(--text)">ton-username</span>/chngr</div>
+            </div>
+            <div class="gh-repo-header">
+              <span class="gh-repo-icon">📁</span>
+              <span class="gh-repo-path">ton-username / chngr</span>
+              <span class="gh-repo-vis">Public</span>
+            </div>
+            <div class="gh-tabs">
+              <div class="gh-tab active">📄 Code <span class="gh-tab-count">1</span></div>
+              <div class="gh-tab">⚠️ Issues</div>
+              <div class="gh-tab">⚙️ Settings</div>
+            </div>
+            <div class="gh-file-list">
+              <div class="gh-file-row">
+                <span class="gh-file-icon">📄</span>
+                <span class="gh-file-name">README.md</span>
+                <span class="gh-file-commit">Initial commit</span>
+                <span class="gh-file-date">à l'instant</span>
+              </div>
+            </div>
+            <div style="padding:12px 20px;display:flex;gap:10px;border-top:1px solid var(--border)">
+              <div class="gh-btn gh-btn-green">+ Add file</div>
+              <div class="gh-btn gh-btn-default" style="flex:1;justify-content:center">Upload files</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">2</div>
+        <div class="step-body">
+          <div class="step-title">Uploader les fichiers via l'interface web</div>
+          <p class="step-text">Clique sur <strong>«&nbsp;Add file&nbsp;»</strong> → <strong>«&nbsp;Upload files&nbsp;»</strong>. Une zone de glisser-déposer apparaît.</p>
+          <p class="step-text">Dépose les fichiers suivants (extraits du ZIP Chngr) :</p>
+
+          <div class="gh-window">
+            <div class="gh-titlebar">
+              <div class="gh-dots"><div class="gh-dot gh-dot-r"></div><div class="gh-dot gh-dot-y"></div><div class="gh-dot gh-dot-g"></div></div>
+              <div class="gh-url-bar"><span class="gh-lock">🔒</span>github.com/ton-username/chngr/upload</div>
+            </div>
+            <div style="padding:24px;font-family:var(--font-body)">
+              <div style="border:2px dashed var(--border2);border-radius:12px;padding:32px;text-align:center;margin-bottom:16px">
+                <div style="font-size:32px;margin-bottom:10px">📂</div>
+                <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px">Glisse tes fichiers ici</div>
+                <div style="font-size:13px;color:var(--text2)">ou clique pour sélectionner</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--green-dim);border:1px solid #3FB95030;border-radius:8px">
+                  <span style="font-size:16px">📄</span>
+                  <span style="font-size:13px;color:var(--green);font-weight:600">index.html</span>
+                  <span style="margin-left:auto;font-size:11px;color:var(--green)">✓ Chargé</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--green-dim);border:1px solid #3FB95030;border-radius:8px">
+                  <span style="font-size:16px">📄</span>
+                  <span style="font-size:13px;color:var(--green);font-weight:600">guide-raccourcis.html</span>
+                  <span style="margin-left:auto;font-size:11px;color:var(--green)">✓ Chargé</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--green-dim);border:1px solid #3FB95030;border-radius:8px">
+                  <span style="font-size:16px">📄</span>
+                  <span style="font-size:13px;color:var(--green);font-weight:600">guide-github.html</span>
+                  <span style="margin-left:auto;font-size:11px;color:var(--green)">✓ Chargé</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout c-info">
+            <span class="callout-icon">ℹ️</span>
+            <div class="callout-body"><strong>Important :</strong> Le fichier principal doit impérativement s'appeler <code>index.html</code> (en minuscules). C'est ce fichier que GitHub Pages charge par défaut quand quelqu'un visite ton URL.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">3</div>
+        <div class="step-body">
+          <div class="step-title">Valider le commit</div>
+          <p class="step-text">En bas de la page, tu vois la section <strong>«&nbsp;Commit changes&nbsp;»</strong>. Laisse le message par défaut ou écris <code>Ajout Chngr v1</code>. Clique sur <strong>«&nbsp;Commit changes&nbsp;»</strong> (bouton vert).</p>
+
+          <div class="callout c-success">
+            <span class="callout-icon">✓</span>
+            <div class="callout-body"><strong>Tes fichiers sont en ligne !</strong> Tu devrais voir <code>index.html</code>, <code>guide-raccourcis.html</code> et <code>guide-github.html</code> listés dans ton repository.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── ÉTAPE 4 ─────────────────────────── -->
+  <section id="etape4" class="guide-section">
+    <div class="section-head">
+      <div class="section-num-big">4</div>
+      <div class="section-head-text">
+        <div class="section-num-label">Étape 4 sur 6</div>
+        <h2>Activer GitHub Pages</h2>
+        <p>C'est l'étape qui transforme ton dépôt de code en site web accessible publiquement.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-bullet">1</div>
+        <div class="step-body">
+          <div class="step-title">Aller dans les Settings du repository</div>
+          <p class="step-text">Depuis la page de ton repository, clique sur l'onglet <strong>«&nbsp;Settings&nbsp;»</strong> (la roue dentée ⚙️ tout à droite des onglets).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">2</div>
+        <div class="step-body">
+          <div class="step-title">Trouver la section «&nbsp;Pages&nbsp;» dans le menu gauche</div>
+          <p class="step-text">Dans la colonne de gauche, fais défiler jusqu'à la section <strong>«&nbsp;Code and automation&nbsp;»</strong> et clique sur <strong>«&nbsp;Pages&nbsp;»</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">3</div>
+        <div class="step-body">
+          <div class="step-title">Configurer la source de déploiement</div>
+          <p class="step-text">Tu vois la page GitHub Pages. Configure-la ainsi :</p>
+
+          <div class="gh-window">
+            <div class="gh-titlebar">
+              <div class="gh-dots"><div class="gh-dot gh-dot-r"></div><div class="gh-dot gh-dot-y"></div><div class="gh-dot gh-dot-g"></div></div>
+              <div class="gh-url-bar"><span class="gh-lock">🔒</span>github.com/ton-username/chngr/settings/pages</div>
+            </div>
+            <div style="padding:24px;font-family:var(--font-body)">
+              <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px">GitHub Pages</div>
+              <div style="font-size:13px;color:var(--text2);margin-bottom:24px">GitHub Pages is designed to host your personal, organization, or project pages.</div>
+
+              <div style="margin-bottom:20px">
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">Build and deployment</div>
+                <div style="font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Source</div>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div class="gh-select">Deploy from a branch ▾</div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:20px">
+                <div style="font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Branch</div>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                  <div class="gh-select" style="background:var(--bg);border-color:var(--blue)">🌿 <strong style="color:var(--text)">main</strong> ▾</div>
+                  <div class="gh-select">/ (root) ▾</div>
+                  <div class="gh-btn gh-btn-green">Save</div>
+                </div>
+                <div style="font-size:12px;color:var(--text3);margin-top:8px">→ Choisir la branche <strong style="color:var(--text)">main</strong> et le dossier <strong style="color:var(--text)">/&nbsp;(root)</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="checklist">
+            <div class="ci"><div class="ci-box"></div><div><strong>Source</strong> : sélectionne <code>Deploy from a branch</code></div></div>
+            <div class="ci"><div class="ci-box"></div><div><strong>Branch</strong> : sélectionne <code>main</code></div></div>
+            <div class="ci"><div class="ci-box"></div><div><strong>Dossier</strong> : laisse <code>/ (root)</code></div></div>
+            <div class="ci"><div class="ci-box"></div><div>Clique sur <strong>«&nbsp;Save&nbsp;»</strong></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">4</div>
+        <div class="step-body">
+          <div class="step-title">Attendre le déploiement (~2 minutes)</div>
+          <p class="step-text">GitHub prépare ton site. Tu peux suivre l'avancement dans <strong>Actions</strong> (onglet en haut du repository). Une fois terminé, un point vert <span style="color:var(--green)">●</span> apparaît.</p>
+
+          <div class="gh-window">
+            <div class="gh-body" style="padding:0">
+              <div class="gh-pages-box">
+                <span class="gh-pages-icon">🎉</span>
+                <div>
+                  <div class="gh-pages-status">● Active</div>
+                  <div style="font-size:12px;color:var(--text2);margin:3px 0">Ton site est en ligne à :</div>
+                  <div class="gh-pages-url">https://ton-username.github.io/chngr</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout c-info">
+            <span class="callout-icon">ℹ️</span>
+            <div class="callout-body">Si la page Settings/Pages ne montre pas encore l'URL, actualise la page après 1-2 minutes. Le premier déploiement peut prendre jusqu'à 5 minutes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── ÉTAPE 5 ─────────────────────────── -->
+  <section id="etape5" class="guide-section">
+    <div class="section-head">
+      <div class="section-num-big">5</div>
+      <div class="section-head-text">
+        <div class="section-num-label">Étape 5 sur 6</div>
+        <h2>Accéder à ton application</h2>
+        <p>Ton URL Chngr suit un schéma précis basé sur ton username GitHub.</p>
+      </div>
+    </div>
+
+    <div class="url-result">
+      <div class="url-result-label">Ton URL Chngr permanente</div>
+      <div class="url-result-value">https://<span style="color:var(--orange)">ton-username</span>.github.io/<span style="color:var(--accent)">chngr</span></div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-bullet">1</div>
+        <div class="step-body">
+          <div class="step-title">Ouvrir l'URL dans Safari sur iPhone</div>
+          <p class="step-text">Ouvre Safari sur ton iPhone et tape ton URL. Chngr se charge exactement comme si c'était une app native.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">2</div>
+        <div class="step-body">
+          <div class="step-title">Ajouter à l'écran d'accueil (recommandé)</div>
+          <p class="step-text">Pour une expérience vraiment app-like sur iPhone :</p>
+          <div class="checklist">
+            <div class="ci"><div class="ci-box"></div><div>Dans Safari, appuie sur l'icône <strong>Partager</strong> (carré avec flèche vers le haut)</div></div>
+            <div class="ci"><div class="ci-box"></div><div>Fais défiler → <strong>«&nbsp;Sur l'écran d'accueil&nbsp;»</strong></div></div>
+            <div class="ci"><div class="ci-box"></div><div>Nomme-le <strong>Chngr</strong> → <strong>«&nbsp;Ajouter&nbsp;»</strong></div></div>
+          </div>
+          <div class="callout c-success">
+            <span class="callout-icon">📱</span>
+            <div class="callout-body"><strong>Chngr apparaît sur ton écran d'accueil</strong> comme une vraie app. Elle s'ouvre en plein écran, sans la barre d'adresse Safari, grâce aux balises <code>apple-mobile-web-app-capable</code> déjà dans le code.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">3</div>
+        <div class="step-body">
+          <div class="step-title">Vérifier que les données persistent</div>
+          <p class="step-text">Ajoute une pesée de test, ferme l'app, rouvre-la. Tes données sont bien là — elles sont stockées dans le localStorage de Safari sur ton iPhone, indépendamment du serveur GitHub.</p>
+          <div class="callout c-tip">
+            <span class="callout-icon">💡</span>
+            <div class="callout-body"><strong>Astuce :</strong> Si tu vides "Historique et données de sites web" dans les réglages Safari, les données localStorage sont effacées. Pour sauvegarder, utilise la fonction d'export de Chngr régulièrement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── ÉTAPE 6 ─────────────────────────── -->
+  <section id="etape6" class="guide-section">
+    <div class="section-head">
+      <div class="section-num-big">6</div>
+      <div class="section-head-text">
+        <div class="section-num-label">Étape 6 sur 6</div>
+        <h2>Mettre à jour l'application</h2>
+        <p>Quand une nouvelle version de Chngr est disponible, voici comment la déployer en 2 minutes.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-bullet">1</div>
+        <div class="step-body">
+          <div class="step-title">Aller sur ton repository GitHub</div>
+          <p class="step-text">Va sur <strong>github.com/ton-username/chngr</strong>. Tu vois la liste de tes fichiers.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">2</div>
+        <div class="step-body">
+          <div class="step-title">Remplacer le fichier index.html</div>
+          <p class="step-text">Clique sur <strong>index.html</strong> dans la liste → puis sur l'icône <strong>✏️ crayon</strong> en haut à droite du fichier. Une autre option : clique directement sur <strong>«&nbsp;Add file&nbsp;»</strong> → <strong>«&nbsp;Upload files&nbsp;»</strong> et dépose le nouveau <code>index.html</code> — GitHub écrase automatiquement l'ancien.</p>
+
+          <div class="callout c-info">
+            <span class="callout-icon">ℹ️</span>
+            <div class="callout-body">Le déploiement est automatique après chaque commit. Attends 1-2 minutes puis recharge Chngr sur ton iPhone. <strong>Tes données de pesées ne sont pas affectées</strong> — elles vivent dans le localStorage, pas dans le code.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet warn">!</div>
+        <div class="step-body">
+          <div class="step-title">Forcer le rechargement sur iPhone</div>
+          <p class="step-text">Safari met parfois le site en cache. Si tu vois l'ancienne version après une mise à jour :</p>
+          <div class="checklist">
+            <div class="ci"><div class="ci-box"></div><div>Appui long sur le bouton <strong>Recharger ⟳</strong> dans Safari</div></div>
+            <div class="ci"><div class="ci-box"></div><div>Sélectionne <strong>«&nbsp;Recharger sans le cache&nbsp;»</strong></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECTION RACCOURCIS ─────────────── -->
+  <section id="raccourcis" class="guide-section">
+    <div class="section-head">
+      <div class="section-num-big" style="background:var(--orange);color:#0D1117">⚡</div>
+      <div class="section-head-text">
+        <div class="section-num-label">Étape bonus</div>
+        <h2>Mettre à jour le Raccourci iOS</h2>
+        <p>Maintenant que tu as une URL permanente, mets à jour la synchro Apple Santé.</p>
+      </div>
+    </div>
+
+    <div class="callout c-warn" style="margin-bottom:24px">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body"><strong>Action requise :</strong> Si tu avais configuré le raccourci avec un fichier local (ouvert depuis les Fichiers sur iPhone), tu dois maintenant remplacer l'URL par ta nouvelle URL GitHub Pages — sinon la synchro ne fonctionnera plus si tu changes de téléphone ou de navigateur.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-bullet">1</div>
+        <div class="step-body">
+          <div class="step-title">Générer un nouveau token depuis l'URL GitHub Pages</div>
+          <p class="step-text">Ouvre Chngr via <code>https://ton-username.github.io/chngr</code> dans Safari. Va dans le panneau <strong>Synchro Apple Santé</strong> → génère un token → copie l'URL complète. Cette URL contient désormais ton adresse GitHub Pages.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet">2</div>
+        <div class="step-body">
+          <div class="step-title">Modifier l'action «&nbsp;Ouvrir des URL&nbsp;» dans Raccourcis</div>
+          <p class="step-text">Ouvre l'app <strong>Raccourcis</strong> → ton raccourci <strong>«&nbsp;Chngr — Sync Poids&nbsp;»</strong> → appuie sur les 3 points <strong>···</strong> pour modifier. Trouve l'action <strong>«&nbsp;Ouvrir des URL&nbsp;»</strong> et remplace l'ancienne URL par la nouvelle (qui commence par <code>https://ton-username.github.io/chngr</code>).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-bullet done">✓</div>
+        <div class="step-body">
+          <div class="step-title">Tester la synchro</div>
+          <p class="step-text">Exécute le raccourci manuellement. Chngr s'ouvre depuis GitHub Pages et confirme la réception. L'automatisation matinale utilisera désormais cette URL permanente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- COMPARAISON -->
+  <section class="guide-section">
+    <h2 style="font-family:var(--font-ui);font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-bottom:16px;color:var(--text)">Comparaison des options d'hébergement</h2>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:20px">Pourquoi GitHub Pages est le meilleur choix pour Chngr.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Option</th>
+          <th>Prix</th>
+          <th>HTTPS</th>
+          <th>URL fixe</th>
+          <th>Difficulté</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GitHub Pages ✦</td>
+          <td><span class="badge b-green">Gratuit</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-blue">Facile</span></td>
+        </tr>
+        <tr>
+          <td>Netlify</td>
+          <td><span class="badge b-green">Gratuit</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-blue">Facile</span></td>
+        </tr>
+        <tr>
+          <td>Fichier local iPhone</td>
+          <td><span class="badge b-green">Gratuit</span></td>
+          <td><span class="badge b-red">Non</span></td>
+          <td><span class="badge b-red">Non</span></td>
+          <td><span class="badge b-green">Trivial</span></td>
+        </tr>
+        <tr>
+          <td>Hébergement mutualisé</td>
+          <td><span class="badge b-orange">3-10€/mois</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-orange">Moyen</span></td>
+        </tr>
+        <tr>
+          <td>Vercel</td>
+          <td><span class="badge b-green">Gratuit</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-green">Oui</span></td>
+          <td><span class="badge b-blue">Facile</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text3);margin-top:8px">✦ Option recommandée pour Chngr</p>
+  </section>
+
+  <!-- CHECKLIST FINALE -->
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px;margin-bottom:48px">
+    <div style="font-family:var(--font-ui);font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-0.02em">✅ Checklist finale</div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:20px">Coche chaque point pour valider ta configuration complète.</p>
+    <div class="checklist">
+      <div class="ci"><div class="ci-box"></div><div>Compte GitHub créé et vérifié par email</div></div>
+      <div class="ci"><div class="ci-box"></div><div>Repository <strong>chngr</strong> créé en <strong>Public</strong></div></div>
+      <div class="ci"><div class="ci-box"></div><div>Fichiers <code>index.html</code>, <code>guide-raccourcis.html</code>, <code>guide-github.html</code> uploadés</div></div>
+      <div class="ci"><div class="ci-box"></div><div>GitHub Pages activé depuis la branche <code>main</code> / <code>(root)</code></div></div>
+      <div class="ci"><div class="ci-box"></div><div>URL <code>https://ton-username.github.io/chngr</code> accessible dans Safari</div></div>
+      <div class="ci"><div class="ci-box"></div><div>Chngr ajouté à l'écran d'accueil iPhone</div></div>
+      <div class="ci"><div class="ci-box"></div><div>Token généré depuis l'URL GitHub Pages (pas depuis un fichier local)</div></div>
+      <div class="ci"><div class="ci-box"></div><div>URL Raccourcis mise à jour avec la nouvelle adresse GitHub</div></div>
+      <div class="ci"><div class="ci-box"></div><div>Test de synchro Apple Santé → Chngr réussi</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-logo">Chn<span>gr</span></div>
+    <div>Guide GitHub Pages · Version 1.0</div>
+  </div>
+
+</main>
+</div>
+
+</body>
+</html>

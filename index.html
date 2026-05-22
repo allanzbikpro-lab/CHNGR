@@ -1224,7 +1224,7 @@ function copyUrl() {
 
 function buildSyncUrl(token) {
   const base = window.location.href.split('?')[0];
-  return base + '?sync=1&token=' + token + '&poids=POIDS_KG&date=DATE_ISO';
+  return base + '?sync=1&token=' + token + '&poids=clipboard';
 }
 
 function refreshSyncUI() {
@@ -1264,14 +1264,13 @@ function toggleSyncPanel() {
 }
 
 // ===== URL SYNC RECEPTION =====
-// Raccourcis iOS calls: index.html?sync=1&token=XXX&poids=82.5&date=2025-05-22T07:30:00
+// Raccourcis iOS calls: index.html?sync=1&token=XXX&poids=clipboard
 function checkUrlSync() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('sync') !== '1') return;
 
-  const token     = params.get('token');
-  const poidsStr  = params.get('poids');
-  const dateStr   = params.get('date');
+  const token    = params.get('token');
+  const poidsStr = params.get('poids');
 
   // Clean URL immediately
   window.history.replaceState({}, '', window.location.pathname);
@@ -1282,32 +1281,55 @@ function checkUrlSync() {
     return;
   }
 
+  // Mode clipboard : on lit le presse-papiers
+  if (poidsStr === 'clipboard') {
+    navigator.clipboard.readText().then(text => {
+      // Nettoie la valeur : remplace virgule par point, retire tout sauf chiffres et point
+      const cleaned = text.trim().replace(',', '.').replace(/[^0-9.]/g, '');
+      const poids = parseFloat(cleaned);
+      if (isNaN(poids) || poids < 20 || poids > 300) {
+        showToast('Poids invalide dans le presse-papiers : ' + text, '⚠️');
+        return;
+      }
+      enregistrerPoids(poids, 'Apple Santé');
+    }).catch(() => {
+      // Si la lecture du presse-papiers échoue (permission refusée),
+      // afficher une boîte de dialogue pour saisie manuelle
+      const val = prompt('Poids lu depuis Apple Santé (kg) :');
+      if (!val) return;
+      const poids = parseFloat(val.replace(',', '.'));
+      if (isNaN(poids) || poids < 20 || poids > 300) {
+        showToast('Valeur invalide', '⚠️');
+        return;
+      }
+      enregistrerPoids(poids, 'Apple Santé');
+    });
+    return;
+  }
+
+  // Mode direct (fallback) : la valeur est directement dans l'URL
   const poids = parseFloat(poidsStr);
   if (isNaN(poids) || poids < 20 || poids > 300) {
-    showToast('Poids invalide reçu : ' + poidsStr, '⚠️');
+    showToast('Poids invalide : ' + poidsStr, '⚠️');
     return;
   }
+  enregistrerPoids(poids, 'Apple Santé');
+}
 
-  const date = dateStr ? new Date(dateStr) : new Date();
-  if (isNaN(date.getTime())) {
-    showToast('Date invalide reçue', '⚠️');
-    return;
-  }
-
-  // Check duplicate (même jour)
+function enregistrerPoids(poids, source) {
+  const date = new Date();
   const dayKey = date.toISOString().slice(0, 10);
   const exists = weights.find(w => w.date.slice(0, 10) === dayKey);
   if (exists) {
     exists.weight = +poids.toFixed(2);
-    exists.date = date.toISOString();
-    exists.note = 'Apple Santé (mise à jour)';
+    exists.date   = date.toISOString();
+    exists.note   = source + ' (mise à jour)';
     showToast('Pesée mise à jour : ' + poids.toFixed(1) + ' kg', '🔄');
   } else {
-    weights.push({ date: date.toISOString(), weight: +poids.toFixed(2), note: 'Apple Santé' });
-    showToast('Synchro Apple Santé : ' + poids.toFixed(1) + ' kg', '🍎');
+    weights.push({ date: date.toISOString(), weight: +poids.toFixed(2), note: source });
+    showToast('Synchro ' + source + ' : ' + poids.toFixed(1) + ' kg', '🍎');
   }
-
-  localStorage.setItem(SYNC_KEY, new Date().toISOString());
+  localStorage.setItem(SYNC_KEY, date.toISOString());
   saveData(weights);
   render();
   refreshSyncUI();
