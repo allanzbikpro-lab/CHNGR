@@ -1340,10 +1340,15 @@ function init() {
   updateStatusTime();
   setInterval(updateStatusTime, 30000);
 
-  if (weights.length === 0) seedDemoData();
+  // Purge toute donnée de démo résiduelle (entrées sans source identifiée)
+  const hasDemo = weights.length > 0 && weights.every(w => !w.note || w.note === '');
+  if (hasDemo) {
+    weights = [];
+    saveData(weights);
+  }
 
-  checkUrlSync();   // Check if Raccourcis sent data
-  refreshSyncUI();  // Populate sync panel
+  checkUrlSync();
+  refreshSyncUI();
   render();
 }
 
@@ -1352,25 +1357,6 @@ function updateStatusTime() {
   const h = now.getHours().toString().padStart(2, '0');
   const m = now.getMinutes().toString().padStart(2, '0');
   document.getElementById('statusTime').textContent = h + ':' + m;
-}
-
-function seedDemoData() {
-  const now = new Date();
-  const base = 82.4;
-  const count = 30;
-  for (let i = count; i >= 0; i--) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    const fluctuation = (Math.random() - 0.48) * 0.5;
-    const trend = -i * 0.05;
-    const w = +(base + trend + fluctuation).toFixed(1);
-    weights.push({
-      date: d.toISOString(),
-      weight: w,
-      note: ''
-    });
-  }
-  saveData(weights);
 }
 
 // ===== RENDER =====
