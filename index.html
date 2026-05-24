@@ -1273,6 +1273,401 @@
     font-weight: 700;
     margin-bottom: 16px;
   }
+
+  /* ===== BESOINS SCREEN ===== */
+  #besoinsScreen { display: none; }
+
+  .besoins-hero {
+    background: linear-gradient(135deg, #1A1F0A 0%, #0F1A0A 100%);
+    border: 1px solid var(--accent-dim2);
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .besoins-hero::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, #C8FF0018 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .besoins-hero-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-family: var(--font-display);
+    margin-bottom: 6px;
+  }
+
+  .besoins-kcal-big {
+    font-family: var(--font-display);
+    font-size: 58px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .besoins-kcal-big span {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text3);
+    margin-left: 4px;
+  }
+
+  .besoins-kcal-sub {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .besoins-adjust-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .adjust-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-display);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid;
+  }
+
+  .adjust-chip-reduce {
+    background: #FF4D6A12;
+    border-color: #FF4D6A40;
+    color: var(--red);
+  }
+
+  .adjust-chip-activity {
+    background: #4D9EFF12;
+    border-color: #4D9EFF40;
+    color: var(--blue);
+  }
+
+  .adjust-chip:active { transform: scale(0.96); }
+
+  /* Alert band */
+  .trend-alert {
+    display: none;
+    background: #FF9A3C10;
+    border: 1px solid #FF9A3C35;
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .trend-alert.visible { display: flex; }
+  .trend-alert-icon { font-size: 18px; flex-shrink: 0; }
+  .trend-alert-body { flex: 1; }
+  .trend-alert-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .trend-alert-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* Good trend band */
+  .trend-good {
+    display: none;
+    background: #00D68F10;
+    border: 1px solid #00D68F30;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    gap: 10px;
+    align-items: center;
+  }
+  .trend-good.visible { display: flex; }
+  .trend-good-text { font-size: 12px; color: #00D68F; font-family: var(--font-display); font-weight: 600; }
+
+  /* Macro grid */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .macro-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .macro-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .macro-card.proteine::before { background: #4D9EFF; }
+  .macro-card.lipide::before   { background: #FF9A3C; }
+  .macro-card.glucide::before  { background: var(--accent); }
+  .macro-card.fibre::before    { background: #00D68F; }
+
+  .macro-emoji { font-size: 22px; margin-bottom: 8px; }
+
+  .macro-name {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    margin-bottom: 4px;
+  }
+
+  .macro-value {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 2px;
+  }
+
+  .macro-card.proteine .macro-value { color: #4D9EFF; }
+  .macro-card.lipide   .macro-value { color: #FF9A3C; }
+  .macro-card.glucide  .macro-value { color: var(--accent); }
+  .macro-card.fibre    .macro-value { color: #00D68F; }
+
+  .macro-unit {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .macro-kcal {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+
+  /* Macro bar */
+  .macro-bar-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+
+  .macro-bar-title {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text2);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 10px;
+    color: var(--text3);
+  }
+
+  .macro-bar-track {
+    height: 10px;
+    border-radius: 5px;
+    background: var(--bg3);
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .macro-bar-seg {
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+
+  .macro-bar-legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .mbl-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text2);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .mbl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Comment card */
+  .comment-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .comment-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .comment-icon {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: var(--purple-dim, #BC8CFF12);
+    border: 1px solid #BC8CFF25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .comment-card-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .comment-card-sub {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  .comment-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .comment-item {
+    background: var(--bg3);
+    border-radius: var(--radius-xs);
+    padding: 12px 14px;
+    border-left: 3px solid transparent;
+  }
+
+  .comment-item.ci-formula { border-color: var(--accent); }
+  .comment-item.ci-macro   { border-color: #4D9EFF; }
+  .comment-item.ci-trend   { border-color: #FF9A3C; }
+  .comment-item.ci-adjust  { border-color: #FF4D6A; }
+
+  .comment-item-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    margin-bottom: 5px;
+  }
+
+  .comment-item.ci-formula .comment-item-label { color: var(--accent); }
+  .comment-item.ci-macro   .comment-item-label { color: #4D9EFF; }
+  .comment-item.ci-trend   .comment-item-label { color: #FF9A3C; }
+  .comment-item.ci-adjust  .comment-item-label { color: #FF4D6A; }
+
+  .comment-item-text {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* No profil warning */
+  .no-profil-warn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 24px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .no-profil-icon { font-size: 44px; margin-bottom: 14px; }
+  .no-profil-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .no-profil-text { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+
+  .go-profil-btn {
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #0A0A0F;
+    border: none;
+    border-radius: var(--radius-xs);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .go-profil-btn:active { transform: scale(0.97); }
+
+  /* Adjustment active indicator */
+  .adj-active-badge {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: #FF4D6A12;
+    border: 1px solid #FF4D6A35;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--red);
+    font-family: var(--font-display);
+    margin-top: 10px;
+    width: fit-content;
+  }
+  .adj-active-badge.visible { display: flex; }
+  .adj-reset-link {
+    color: var(--text3);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
 </style>
 </head>
 <body>
@@ -1318,7 +1713,7 @@
 <nav class="nav-tabs">
   <button class="nav-tab active" onclick="switchTab(this, 'pesees')">⚖️ Pesées</button>
   <button class="nav-tab" onclick="switchTab(this, 'profil')">👤 Données perso</button>
-  <button class="nav-tab" onclick="switchTab(this, 'nutrition')">🥗 Nutrition</button>
+  <button class="nav-tab" onclick="switchTab(this, 'besoins')">🍽 Besoins</button>
   <button class="nav-tab" onclick="switchTab(this, 'training')">💪 Training</button>
   <button class="nav-tab" onclick="switchTab(this, 'body')">📐 Mensurations</button>
   <button class="nav-tab" onclick="switchTab(this, 'objectifs')">🎯 Objectifs</button>
@@ -1620,6 +2015,120 @@
 
 </div><!-- /profilScreen -->
 
+<!-- ===== ÉCRAN BESOINS ===== -->
+<div id="besoinsScreen">
+
+  <!-- No profil warning (shown if profil incomplete) -->
+  <div class="no-profil-warn" id="besoinsNoProfil">
+    <div class="no-profil-icon">📋</div>
+    <div class="no-profil-title">Profil incomplet</div>
+    <p class="no-profil-text">Pour calculer tes besoins nutritionnels précis, complète d'abord ton profil (sexe, âge, taille, activité) et enregistre au moins une pesée.</p>
+    <button class="go-profil-btn" onclick="goToProfil()">Compléter mon profil →</button>
+  </div>
+
+  <!-- Main content (shown when profil complete) -->
+  <div id="besoinsContent" style="display:none">
+
+    <!-- Trend alert -->
+    <div class="trend-alert" id="trendAlert">
+      <div class="trend-alert-icon">⚠️</div>
+      <div class="trend-alert-body">
+        <div class="trend-alert-title">Tendance insuffisante sur 3 jours</div>
+        <div class="trend-alert-text" id="trendAlertText">La courbe de tendance ne montre pas de perte suffisante. Choisis une action :</div>
+        <div class="besoins-adjust-row" style="margin-top:10px">
+          <div class="adjust-chip adjust-chip-reduce" onclick="applyKcalReduction()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            −200 kcal
+          </div>
+          <div class="adjust-chip adjust-chip-activity" onclick="suggestActivity()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+            ↑ Activité
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Good trend -->
+    <div class="trend-good" id="trendGood">
+      <span style="font-size:18px">✅</span>
+      <div class="trend-good-text" id="trendGoodText">Bonne progression — continue sur cette lancée !</div>
+    </div>
+
+    <!-- Caloric target hero -->
+    <div class="besoins-hero">
+      <div class="besoins-hero-label">Objectif calorique journalier</div>
+      <div class="besoins-kcal-big" id="besoinsKcalBig">—<span>kcal</span></div>
+      <div class="besoins-kcal-sub" id="besoinsKcalSub">Calcul en cours...</div>
+      <div class="adj-active-badge" id="adjBadge">
+        −200 kcal appliquées
+        <span class="adj-reset-link" onclick="resetReduction()">Annuler</span>
+      </div>
+    </div>
+
+    <!-- Macro grid -->
+    <div class="macro-grid">
+      <div class="macro-card proteine">
+        <div class="macro-emoji">🥩</div>
+        <div class="macro-name">Protéines</div>
+        <div class="macro-value" id="mProteine">—</div>
+        <div class="macro-unit">grammes / jour</div>
+        <div class="macro-kcal" id="mProteineKcal"></div>
+      </div>
+      <div class="macro-card lipide">
+        <div class="macro-emoji">🥑</div>
+        <div class="macro-name">Lipides</div>
+        <div class="macro-value" id="mLipide">—</div>
+        <div class="macro-unit">grammes / jour</div>
+        <div class="macro-kcal" id="mLipideKcal"></div>
+      </div>
+      <div class="macro-card glucide">
+        <div class="macro-emoji">🍚</div>
+        <div class="macro-name">Glucides</div>
+        <div class="macro-value" id="mGlucide">—</div>
+        <div class="macro-unit">grammes / jour</div>
+        <div class="macro-kcal" id="mGlucideKcal"></div>
+      </div>
+      <div class="macro-card fibre">
+        <div class="macro-emoji">🥦</div>
+        <div class="macro-name">Fibres</div>
+        <div class="macro-value" id="mFibre">—</div>
+        <div class="macro-unit">grammes / jour</div>
+        <div class="macro-kcal" id="mFibreNote"></div>
+      </div>
+    </div>
+
+    <!-- Macro repartition bar -->
+    <div class="macro-bar-wrap">
+      <div class="macro-bar-title">Répartition des macros</div>
+      <div class="macro-bar-track">
+        <div class="macro-bar-seg" id="barProteine" style="background:#4D9EFF;width:0%"></div>
+        <div class="macro-bar-seg" id="barLipide"   style="background:#FF9A3C;width:0%"></div>
+        <div class="macro-bar-seg" id="barGlucide"  style="background:#C8FF00;width:0%"></div>
+      </div>
+      <div class="macro-bar-legend">
+        <div class="mbl-item"><div class="mbl-dot" style="background:#4D9EFF"></div><span id="legProteine">Protéines —%</span></div>
+        <div class="mbl-item"><div class="mbl-dot" style="background:#FF9A3C"></div><span id="legLipide">Lipides —%</span></div>
+        <div class="mbl-item"><div class="mbl-dot" style="background:#C8FF00"></div><span id="legGlucide">Glucides —%</span></div>
+      </div>
+    </div>
+
+    <!-- Comment / justification card -->
+    <div class="comment-card">
+      <div class="comment-card-header">
+        <div class="comment-icon">🧠</div>
+        <div>
+          <div class="comment-card-title">Analyse & Justifications</div>
+          <div class="comment-card-sub">Pourquoi ces chiffres ?</div>
+        </div>
+      </div>
+      <div class="comment-block" id="commentBlock">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+  </div><!-- /besoinsContent -->
+</div><!-- /besoinsScreen -->
+
 <!-- FAB -->
 <button class="fab" onclick="openModal()" aria-label="Ajouter une pesée">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1852,6 +2361,264 @@ function enregistrerPoids(poids, source) {
   saveData(weights);
   render();
   refreshSyncUI();
+}
+
+// ===== BESOINS / NUTRITION =====
+const BESOINS_KEY = 'chngr_besoins_adj_v1';
+
+const ACTIVITE_COEFFS_B = {
+  'sedentaire':  1.2,
+  'legere':      1.375,
+  'moderee':     1.55,
+  'elevee':      1.725,
+  'tres-elevee': 1.9
+};
+
+function goToProfil() {
+  const btn = document.querySelector('.nav-tab[onclick*="profil"]');
+  if (btn) btn.click();
+}
+
+function loadBesoins() {
+  const profil = loadProfil();
+  const lastW  = weights.length > 0
+    ? [...weights].sort((a,b) => new Date(b.date)-new Date(a.date))[0].weight
+    : null;
+
+  const hasProfile = profil.sexe && profil.age && profil.taille && profil.activite && lastW;
+
+  document.getElementById('besoinsNoProfil').style.display  = hasProfile ? 'none'  : 'block';
+  document.getElementById('besoinsContent').style.display   = hasProfile ? 'block' : 'none';
+
+  if (!hasProfile) return;
+
+  const adj = parseInt(localStorage.getItem(BESOINS_KEY) || '0');
+  computeAndRenderBesoins(profil, lastW, adj);
+}
+
+function computeAndRenderBesoins(profil, poids, kcalAdj) {
+  // ── Mifflin-St Jeor ──────────────────────────────
+  let bmr;
+  if (profil.sexe === 'homme') {
+    bmr = 10 * poids + 6.25 * profil.taille - 5 * profil.age + 5;
+  } else {
+    bmr = 10 * poids + 6.25 * profil.taille - 5 * profil.age - 161;
+  }
+  bmr = Math.round(bmr);
+
+  const coeff = ACTIVITE_COEFFS_B[profil.activite] || 1.2;
+  const tdee  = Math.round(bmr * coeff);
+
+  // Déficit recommandé pour perte de poids : 300–500 kcal sous TDEE
+  const deficitBase = 350;
+  let objectif = tdee - deficitBase + kcalAdj;
+  objectif = Math.max(1200, objectif); // plancher de sécurité
+
+  // ── Macros ───────────────────────────────────────
+  const proteines = Math.round(poids * 2);         // 2g/kg
+  const lipides   = Math.round(poids * 0.8);       // 0.8g/kg
+  const kcalProteines = proteines * 4;
+  const kcalLipides   = lipides * 9;
+  let   kcalGlucides  = objectif - kcalProteines - kcalLipides;
+  kcalGlucides = Math.max(0, kcalGlucides);
+  const glucides  = Math.round(kcalGlucides / 4);
+  const fibres    = Math.round(objectif / 1000 * 15);
+
+  const totalKcalMacros = kcalProteines + kcalLipides + kcalGlucides;
+  const pctP = totalKcalMacros > 0 ? Math.round(kcalProteines / totalKcalMacros * 100) : 0;
+  const pctL = totalKcalMacros > 0 ? Math.round(kcalLipides   / totalKcalMacros * 100) : 0;
+  const pctG = totalKcalMacros > 0 ? Math.round(kcalGlucides  / totalKcalMacros * 100) : 0;
+
+  // ── Trend 3j ─────────────────────────────────────
+  const trend3j = getTrend3j();
+
+  // ── Render ───────────────────────────────────────
+  // Hero
+  document.getElementById('besoinsKcalBig').innerHTML = objectif.toLocaleString('fr-FR') + '<span>kcal</span>';
+  document.getElementById('besoinsKcalSub').textContent =
+    'TDEE ' + tdee.toLocaleString('fr-FR') + ' kcal · Déficit ' + deficitBase + ' kcal'
+    + (kcalAdj !== 0 ? ' · Ajust. ' + (kcalAdj > 0 ? '+' : '') + kcalAdj + ' kcal' : '');
+
+  // Adj badge
+  const adjBadge = document.getElementById('adjBadge');
+  adjBadge.classList.toggle('visible', kcalAdj < 0);
+
+  // Macros
+  document.getElementById('mProteine').textContent    = proteines;
+  document.getElementById('mProteineKcal').textContent = proteines * 4 + ' kcal';
+  document.getElementById('mLipide').textContent      = lipides;
+  document.getElementById('mLipideKcal').textContent  = lipides * 9 + ' kcal';
+  document.getElementById('mGlucide').textContent     = glucides;
+  document.getElementById('mGlucideKcal').textContent = kcalGlucides + ' kcal';
+  document.getElementById('mFibre').textContent       = fibres;
+  document.getElementById('mFibreNote').textContent   = '15g / 1000 kcal';
+
+  // Bar
+  document.getElementById('barProteine').style.width = pctP + '%';
+  document.getElementById('barLipide').style.width   = pctL + '%';
+  document.getElementById('barGlucide').style.width  = pctG + '%';
+  document.getElementById('legProteine').textContent = 'Protéines ' + pctP + '%';
+  document.getElementById('legLipide').textContent   = 'Lipides '   + pctL + '%';
+  document.getElementById('legGlucide').textContent  = 'Glucides '  + pctG + '%';
+
+  // Trend alerts
+  renderTrendAlert(trend3j, tdee, objectif, kcalAdj);
+
+  // Comments
+  renderComments(profil, poids, bmr, tdee, objectif, proteines, lipides, glucides, fibres, trend3j, kcalAdj, deficitBase);
+}
+
+function getTrend3j() {
+  const data3j = getFilteredData('3j');
+  if (data3j.length < 2) return null;
+  const vals = data3j.map(w => w.weight);
+  const trend = computeTrend(vals);
+  if (trend.length < 2) return null;
+  // Slope = last - first of trend line
+  const slope = trend[trend.length - 1] - trend[0];
+  return slope; // kg over the 3-day window
+}
+
+function renderTrendAlert(slope, tdee, objectif, kcalAdj) {
+  const alertEl = document.getElementById('trendAlert');
+  const goodEl  = document.getElementById('trendGood');
+
+  alertEl.classList.remove('visible');
+  goodEl.classList.remove('visible');
+
+  if (slope === null) return; // pas assez de données
+
+  if (slope >= -0.2) {
+    // Tendance insuffisante
+    alertEl.classList.add('visible');
+    let msg = '';
+    if (slope > 0) {
+      msg = 'Ton poids est en hausse sur 3 jours (+' + slope.toFixed(2) + ' kg). ';
+    } else if (slope === 0) {
+      msg = 'Ton poids est stable sur 3 jours. ';
+    } else {
+      msg = 'La baisse est trop légère (' + slope.toFixed(2) + ' kg sur 3 jours). ';
+    }
+    msg += 'Pour progresser, tu peux réduire ton apport calorique ou augmenter ta dépense.';
+    document.getElementById('trendAlertText').textContent = msg;
+  } else {
+    // Bonne tendance décroissante
+    goodEl.classList.add('visible');
+    document.getElementById('trendGoodText').textContent =
+      'Tendance -' + Math.abs(slope).toFixed(2) + ' kg sur 3 jours — excellente progression, continue !';
+  }
+}
+
+function applyKcalReduction() {
+  const current = parseInt(localStorage.getItem(BESOINS_KEY) || '0');
+  const newAdj  = current - 200;
+  localStorage.setItem(BESOINS_KEY, newAdj);
+  loadBesoins();
+  showToast('−200 kcal appliquées', '✓');
+}
+
+function resetReduction() {
+  localStorage.removeItem(BESOINS_KEY);
+  loadBesoins();
+  showToast('Ajustement annulé', '↺');
+}
+
+function suggestActivity() {
+  showToast('Augmente ton niveau d\'activité dans ton Profil', '🏃');
+  setTimeout(() => {
+    document.querySelector('.nav-tab[onclick*="profil"]')?.click();
+  }, 1200);
+}
+
+function renderComments(profil, poids, bmr, tdee, objectif, prot, lip, gluc, fibres, slope, kcalAdj, deficitBase) {
+  const sexeLabel = profil.sexe === 'homme' ? 'homme' : 'femme';
+  const activiteLabels = {
+    'sedentaire': 'sédentaire', 'legere': 'légère',
+    'moderee': 'modérée', 'elevee': 'élevée', 'tres-elevee': 'très élevée'
+  };
+  const actLabel = activiteLabels[profil.activite] || profil.activite;
+  const coeff = ACTIVITE_COEFFS_B[profil.activite];
+
+  const items = [];
+
+  // Formule
+  items.push({
+    cls: 'ci-formula',
+    label: '📐 Formule de Mifflin-St Jeor',
+    text: `Métabolisme de base calculé pour un ${sexeLabel} de ${profil.age} ans, ${profil.taille} cm, ${poids} kg : ${bmr.toLocaleString('fr-FR')} kcal/j. Multiplié par le coefficient d'activité ${actLabel} (×${coeff}) = ${tdee.toLocaleString('fr-FR')} kcal de dépense totale. Cette formule est la référence scientifique actuelle, plus précise que Harris-Benedict pour les adultes modernes.`
+  });
+
+  // Déficit
+  items.push({
+    cls: 'ci-macro',
+    label: '⚖️ Déficit calorique',
+    text: `Un déficit de ${deficitBase} kcal/j est appliqué sur ta TDEE pour viser une perte de ~0,3–0,5 kg/semaine, soit le rythme optimal pour préserver la masse musculaire. En dessous de 1 200 kcal, un plancher de sécurité est activé automatiquement.`
+  });
+
+  // Macros
+  items.push({
+    cls: 'ci-macro',
+    label: '🥩 Protéines — 2g/kg',
+    text: `${prot}g/j (${prot*4} kcal). Apport élevé justifié en phase de perte de poids pour préserver la masse musculaire et maintenir la satiété. La recherche sportive recommande 1,6 à 2,2 g/kg en restriction calorique.`
+  });
+
+  items.push({
+    cls: 'ci-macro',
+    label: '🥑 Lipides — 0,8g/kg',
+    text: `${lip}g/j (${lip*9} kcal). Minimum recommandé pour le bon fonctionnement hormonal (testostérone, hormones thyroïdiennes) et l'absorption des vitamines liposolubles A, D, E, K.`
+  });
+
+  items.push({
+    cls: 'ci-macro',
+    label: '🍚 Glucides — kcal restantes',
+    text: `${gluc}g/j (${gluc*4} kcal). Calculés par différence après attribution des protéines et lipides. Constituent le carburant principal de l'effort et du cerveau.`
+  });
+
+  items.push({
+    cls: 'ci-macro',
+    label: '🥦 Fibres — 15g/1000 kcal',
+    text: `${fibres}g/j. Ratio basé sur les recommandations de l'ANSES. Les fibres améliorent la satiété, la glycémie post-prandiale et la santé du microbiote intestinal.`
+  });
+
+  // Tendance
+  if (slope !== null) {
+    if (slope >= -0.2) {
+      items.push({
+        cls: 'ci-trend',
+        label: '📉 Analyse de tendance',
+        text: `Sur les 3 derniers jours, la tendance est de ${slope >= 0 ? '+' : ''}${slope.toFixed(2)} kg. Un rythme de perte optimal se situe entre -0,2 et -0,7 kg/semaine. Si la tendance est insuffisante, il est recommandé de réduire l'apport de 200 kcal ou d'augmenter la dépense énergétique.`
+      });
+    } else {
+      items.push({
+        cls: 'ci-formula',
+        label: '📉 Analyse de tendance',
+        text: `Sur les 3 derniers jours, la tendance est de ${slope.toFixed(2)} kg — bonne progression. Maintiens ces habitudes alimentaires et d'activité physique.`
+      });
+    }
+  } else {
+    items.push({
+      cls: 'ci-trend',
+      label: '📉 Analyse de tendance',
+      text: 'Pas encore assez de pesées sur 3 jours pour analyser la tendance. Enregistre tes pesées quotidiennement pour activer cette fonctionnalité.'
+    });
+  }
+
+  // Ajustement actif
+  if (kcalAdj < 0) {
+    items.push({
+      cls: 'ci-adjust',
+      label: '🔧 Ajustement actif',
+      text: `Un ajustement de ${kcalAdj} kcal est appliqué à ton objectif suite à une tendance insuffisante. Si après 5–7 jours la tendance reste plate, un nouvel ajustement de -200 kcal peut être envisagé. Au-delà de -600 kcal de restriction totale, il est préférable d'augmenter l'activité physique.`
+    });
+  }
+
+  const block = document.getElementById('commentBlock');
+  block.innerHTML = items.map(i => `
+    <div class="comment-item ${i.cls}">
+      <div class="comment-item-label">${i.label}</div>
+      <div class="comment-item-text">${i.text}</div>
+    </div>
+  `).join('');
 }
 
 // ===== NAV BOTTOM =====
@@ -2238,17 +3005,16 @@ function switchTab(btn, tab) {
   btn.classList.add('active');
 
   // Show/hide screens
-  document.getElementById('pesesScreen').style.display  = tab === 'pesees'  ? 'block' : 'none';
-  document.getElementById('profilScreen').style.display = tab === 'profil'  ? 'block' : 'none';
+  document.getElementById('pesesScreen').style.display   = tab === 'pesees'   ? 'block' : 'none';
+  document.getElementById('profilScreen').style.display  = tab === 'profil'   ? 'block' : 'none';
+  document.getElementById('besoinsScreen').style.display = tab === 'besoins'  ? 'block' : 'none';
 
   // FAB only on pesées
   document.querySelector('.fab').style.display = tab === 'pesees' ? 'flex' : 'none';
 
-  if (tab === 'profil') {
-    loadProfilUI();
-  } else if (tab !== 'pesees') {
-    showToast('Bientôt disponible 🚀', '');
-  }
+  if (tab === 'profil')  { loadProfilUI(); }
+  else if (tab === 'besoins') { loadBesoins(); }
+  else if (tab !== 'pesees') { showToast('Bientôt disponible 🚀', ''); }
 }
 
 // ===== PROFIL DATA =====
