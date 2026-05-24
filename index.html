@@ -2298,10 +2298,10 @@
       </div>
 
       <!-- Manual import fallback -->
-      <div class="import-card-mini" onclick="handleImport()">
+      <label class="import-card-mini" for="fileInput" style="cursor:pointer">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         <span>Import manuel (XML / CSV Apple Santé)</span>
-      </div>
+      </label>
     </div>
   </div>
 
@@ -2379,6 +2379,7 @@
     Voir tout l'historique
   </button>
 
+  <input type="file" id="fileInput" accept=".xml,.csv,text/csv,text/xml,application/xml" style="position:fixed;top:-100px;left:-100px;opacity:0;width:1px;height:1px" onchange="handleFileImport(event)">
 </main>
 
 </div><!-- /pesesScreen -->
@@ -2778,7 +2779,6 @@
 </div>
 
 <!-- Hidden file input for Apple Health import -->
-<input type="file" id="fileInput" accept=".xml,.csv" style="display:none" onchange="handleFileImport(event)">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
@@ -4271,7 +4271,12 @@ function updateBMR(p) {
 
 // ===== IMPORT =====
 function handleImport() {
-  document.getElementById('fileInput').click();
+  // iOS Safari requires the input to be properly positioned and triggered
+  const input = document.getElementById('fileInput');
+  // Reset so same file can be selected again
+  input.value = '';
+  // Small timeout helps Safari on iOS register the click
+  setTimeout(() => input.click(), 10);
 }
 
 // Fusionne les nouvelles entrées avec les existantes :
@@ -4302,6 +4307,8 @@ function fusionnerPesees(nouvelles) {
 function handleFileImport(event) {
   const file = event.target.files[0];
   if (!file) return;
+  // Reset so the same file can be imported again later
+  event.target.value = '';
 
   const ext = file.name.split('.').pop().toLowerCase();
 
@@ -4370,7 +4377,6 @@ function handleFileImport(event) {
   } else {
     showToast('Format non supporté (CSV ou XML)', '⚠️');
   }
-  event.target.value = '';
 }
 
 // ===== HELPERS =====
