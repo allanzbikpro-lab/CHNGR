@@ -1668,6 +1668,529 @@
     font-weight: 600;
   }
 
+
+  /* ===== MACRO TOOLTIP ===== */
+  .macro-card { cursor: pointer; }
+  .macro-card:active { opacity: 0.85; transform: scale(0.98); transition: transform 0.1s; }
+
+  .tooltip-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 150;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+
+  .tooltip-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .tooltip-sheet {
+    width: 100%;
+    background: var(--bg2);
+    border-radius: 24px 24px 0 0;
+    border-top: 1px solid var(--border);
+    padding: 16px 24px 48px;
+    transform: translateY(100%);
+    transition: transform 0.32s cubic-bezier(0.32,0.72,0,1);
+  }
+
+  .tooltip-overlay.open .tooltip-sheet {
+    transform: translateY(0);
+  }
+
+  .tooltip-handle {
+    width: 36px; height: 4px;
+    background: var(--border2);
+    border-radius: 2px;
+    margin: 0 auto 20px;
+  }
+
+  .tooltip-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .tooltip-emoji { font-size: 36px; }
+
+  .tooltip-macro-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+
+  .tooltip-rule {
+    font-size: 13px;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .tooltip-value-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+
+  .tooltip-big-val {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .tooltip-big-unit {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text3);
+  }
+
+  .tooltip-big-kcal {
+    font-size: 14px;
+    color: var(--text2);
+    margin-left: auto;
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  .tooltip-text {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  .tooltip-text strong { color: var(--text); font-weight: 500; }
+
+  .tooltip-sources {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+
+  /* ===== CALENDRIER SCREEN ===== */
+  #calendrierScreen { display: none; }
+
+  .cal-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .cal-week-label {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    text-align: center;
+    flex: 1;
+  }
+
+  .cal-week-sub {
+    font-size: 11px;
+    color: var(--text3);
+    font-weight: 500;
+    margin-top: 2px;
+    text-align: center;
+  }
+
+  .cal-nav-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--text2);
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .cal-nav-btn:active { background: var(--bg4); transform: scale(0.93); }
+  .cal-nav-btn.disabled { opacity: 0.3; pointer-events: none; }
+
+  /* Summary strip */
+  .cal-summary-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .cal-summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    text-align: center;
+  }
+
+  .cal-summary-val {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .cal-summary-label {
+    font-size: 10px;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+  }
+
+  /* Day cards */
+  .cal-days { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+
+  .cal-day {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .cal-day.is-today { border-color: var(--accent) !important; box-shadow: 0 0 0 1px var(--accent); }
+  .cal-day.is-today .cal-day-header { background: #C8FF0006; }
+  .cal-day.is-high    { border-left: 3px solid var(--red); background: #FF4D6A05; }
+  .cal-day.is-low     { border-left: 3px solid #4D9EFF; }
+  .cal-day.is-special { border-left: 3px solid #FF9A3C; background: #FF9A3C05; }
+
+  .cal-day-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .cal-day-header:active { background: var(--bg3); }
+
+  .cal-day-date-wrap { flex-shrink: 0; text-align: center; width: 36px; }
+
+  .cal-day-num {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .cal-day.is-today .cal-day-num {
+    color: #0A0A0F;
+    background: var(--accent);
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto;
+    font-size: 16px;
+  }
+
+  .cal-day-name {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: var(--font-display);
+    margin-top: 2px;
+  }
+
+  .cal-day-center { flex: 1; }
+
+  .cal-day-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    margin-bottom: 3px;
+  }
+
+  .badge-high    { background: #FF4D6A18; color: var(--red); border: 1px solid #FF4D6A35; }
+  .badge-low     { background: #4D9EFF12; color: #4D9EFF; border: 1px solid #4D9EFF30; }
+  .badge-special { background: #FF9A3C18; color: #FF9A3C; border: 1px solid #FF9A3C35; }
+
+  .cal-day-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .cal-tag {
+    font-size: 10px;
+    color: var(--text3);
+    background: var(--bg3);
+    padding: 2px 8px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+  }
+
+  .cal-day-glucides {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text3);
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .cal-day-glucides span { display: block; font-size: 9px; font-weight: 500; opacity: 0.6; margin-top: 1px; }
+
+  .cal-day-chevron {
+    color: var(--text3);
+    margin-left: 4px;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .cal-day-chevron.open { transform: rotate(180deg); }
+
+  /* Day edit panel */
+  .cal-day-panel {
+    border-top: 1px solid var(--border);
+    padding: 14px;
+    display: none;
+    background: var(--bg2);
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cal-day-panel.open { display: flex; }
+
+  .cal-panel-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .cal-panel-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .cal-panel-sub {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  /* Toggle switch */
+  .toggle-wrap {
+    position: relative;
+    width: 44px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .toggle-wrap input {
+    opacity: 0;
+    width: 0; height: 0;
+    position: absolute;
+  }
+
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--bg4);
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: 1px solid var(--border2);
+  }
+
+  .toggle-slider::after {
+    content: '';
+    position: absolute;
+    left: 3px; top: 3px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--text3);
+    transition: all 0.2s;
+  }
+
+  .toggle-wrap input:checked + .toggle-slider { background: var(--accent); border-color: var(--accent); }
+  .toggle-wrap input:checked + .toggle-slider::after { transform: translateX(18px); background: #0A0A0F; }
+
+  .cal-sport-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xs);
+    padding: 9px 12px;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+    font-family: var(--font-body);
+    transition: border-color 0.2s;
+    margin-top: 4px;
+  }
+  .cal-sport-input:focus { border-color: var(--accent); }
+  .cal-sport-input::placeholder { color: var(--text3); }
+
+  /* Repas special tip box */
+  .cal-special-tip {
+    background: #FF9A3C10;
+    border: 1px solid #FF9A3C30;
+    border-radius: var(--radius-xs);
+    padding: 12px 14px;
+    display: none;
+  }
+  .cal-special-tip.visible { display: block; }
+  .cal-special-tip-title {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: #FF9A3C;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .cal-special-tip-text {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* Macros mini summary in day */
+  .cal-macros-mini {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .cmm-item {
+    background: var(--surface);
+    border-radius: 6px;
+    padding: 7px 8px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .cmm-val {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .cmm-label { font-size: 9px; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 1px; }
+
+  /* Week legend */
+  .cal-legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+  }
+  .cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text2); font-family: var(--font-display); font-weight: 600; }
+  .cal-legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+
+  /* Cal comment section */
+  .cal-comment-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .cal-comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .cal-comment-icon {
+    width: 32px; height: 32px;
+    border-radius: 9px;
+    background: #BC8CFF15;
+    border: 1px solid #BC8CFF25;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+
+  .cal-comment-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .cal-comment-items { display: flex; flex-direction: column; gap: 8px; }
+
+  .cal-comment-item {
+    padding: 11px 13px;
+    border-radius: var(--radius-xs);
+    border-left: 3px solid transparent;
+    background: var(--surface);
+  }
+
+  .cal-ci-high    { border-color: var(--red); }
+  .cal-ci-low     { border-color: #4D9EFF; }
+  .cal-ci-special { border-color: #FF9A3C; }
+  .cal-ci-base    { border-color: var(--text3); }
+
+  .cal-comment-item-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    margin-bottom: 4px;
+  }
+
+  .cal-ci-high    .cal-comment-item-label { color: var(--red); }
+  .cal-ci-low     .cal-comment-item-label { color: #4D9EFF; }
+  .cal-ci-special .cal-comment-item-label { color: #FF9A3C; }
+  .cal-ci-base    .cal-comment-item-label { color: var(--text3); }
+
+  .cal-comment-item-text {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
 </style>
 </head>
 <body>
@@ -1714,6 +2237,7 @@
   <button class="nav-tab active" onclick="switchTab(this, 'pesees')">⚖️ Pesées</button>
   <button class="nav-tab" onclick="switchTab(this, 'profil')">👤 Données perso</button>
   <button class="nav-tab" onclick="switchTab(this, 'besoins')">🍽 Besoins</button>
+  <button class="nav-tab" onclick="switchTab(this, 'calendrier')">📅 Calendrier</button>
   <button class="nav-tab" onclick="switchTab(this, 'training')">💪 Training</button>
   <button class="nav-tab" onclick="switchTab(this, 'body')">📐 Mensurations</button>
   <button class="nav-tab" onclick="switchTab(this, 'objectifs')">🎯 Objectifs</button>
@@ -2067,28 +2591,28 @@
 
     <!-- Macro grid -->
     <div class="macro-grid">
-      <div class="macro-card proteine">
+      <div class="macro-card proteine" onclick="openTooltip('proteine')">
         <div class="macro-emoji">🥩</div>
         <div class="macro-name">Protéines</div>
         <div class="macro-value" id="mProteine">—</div>
         <div class="macro-unit">grammes / jour</div>
         <div class="macro-kcal" id="mProteineKcal"></div>
       </div>
-      <div class="macro-card lipide">
+      <div class="macro-card lipide" onclick="openTooltip('lipide')">
         <div class="macro-emoji">🥑</div>
         <div class="macro-name">Lipides</div>
         <div class="macro-value" id="mLipide">—</div>
         <div class="macro-unit">grammes / jour</div>
         <div class="macro-kcal" id="mLipideKcal"></div>
       </div>
-      <div class="macro-card glucide">
+      <div class="macro-card glucide" onclick="openTooltip('glucide')">
         <div class="macro-emoji">🍚</div>
         <div class="macro-name">Glucides</div>
         <div class="macro-value" id="mGlucide">—</div>
         <div class="macro-unit">grammes / jour</div>
         <div class="macro-kcal" id="mGlucideKcal"></div>
       </div>
-      <div class="macro-card fibre">
+      <div class="macro-card fibre" onclick="openTooltip('fibre')">
         <div class="macro-emoji">🥦</div>
         <div class="macro-name">Fibres</div>
         <div class="macro-value" id="mFibre">—</div>
@@ -2128,6 +2652,62 @@
 
   </div><!-- /besoinsContent -->
 </div><!-- /besoinsScreen -->
+
+<!-- ===== ÉCRAN CALENDRIER ===== -->
+<div id="calendrierScreen">
+
+  <!-- Week navigation -->
+  <div class="cal-nav-row">
+    <div class="cal-nav-btn" id="calPrevBtn" onclick="calChangeWeek(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <div>
+      <div class="cal-week-label" id="calWeekLabel">—</div>
+      <div class="cal-week-sub" id="calWeekSub">—</div>
+    </div>
+    <div class="cal-nav-btn" id="calNextBtn" onclick="calChangeWeek(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </div>
+
+  <!-- Week summary -->
+  <div class="cal-summary-strip">
+    <div class="cal-summary-card">
+      <div class="cal-summary-val" id="calSumHigh">0</div>
+      <div class="cal-summary-label">🔴 Jours hauts</div>
+    </div>
+    <div class="cal-summary-card">
+      <div class="cal-summary-val" id="calSumLow">0</div>
+      <div class="cal-summary-label">🔵 Jours bas</div>
+    </div>
+    <div class="cal-summary-card">
+      <div class="cal-summary-val" id="calSumSpecial">0</div>
+      <div class="cal-summary-label">🟠 Repas spéciaux</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="cal-legend">
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--red)"></div>Jour HAUT — glucides complets</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#4D9EFF"></div>Jour BAS — −200 kcal glucides</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#FF9A3C"></div>Repas spécial — stratégie adaptée</div>
+  </div>
+
+  <!-- Day list -->
+  <div class="cal-days" id="calDaysList"></div>
+
+  <!-- Comment / Justification -->
+  <div class="cal-comment-section">
+    <div class="cal-comment-header">
+      <div class="cal-comment-icon">🧠</div>
+      <div class="cal-comment-title">Stratégie & Justifications</div>
+    </div>
+    <div class="cal-comment-items" id="calCommentItems">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+</div><!-- /calendrierScreen -->
 
 <!-- FAB -->
 <button class="fab" onclick="openModal()" aria-label="Ajouter une pesée">
@@ -2409,8 +2989,8 @@ function computeAndRenderBesoins(profil, poids, kcalAdj) {
   const coeff = ACTIVITE_COEFFS_B[profil.activite] || 1.2;
   const tdee  = Math.round(bmr * coeff);
 
-  // Déficit recommandé pour perte de poids : 300–500 kcal sous TDEE
-  const deficitBase = 350;
+  // Déficit fixe de 200 kcal sous TDEE
+  const deficitBase = 200;
   let objectif = tdee - deficitBase + kcalAdj;
   objectif = Math.max(1200, objectif); // plancher de sécurité
 
@@ -2452,6 +3032,9 @@ function computeAndRenderBesoins(profil, poids, kcalAdj) {
   document.getElementById('mGlucideKcal').textContent = kcalGlucides + ' kcal';
   document.getElementById('mFibre').textContent       = fibres;
   document.getElementById('mFibreNote').textContent   = '15g / 1000 kcal';
+
+  // Store for tooltip access
+  window._lastMacros = { proteine: proteines, lipide: lipides, glucide: glucides, fibre: fibres, poids };
 
   // Bar
   document.getElementById('barProteine').style.width = pctP + '%';
@@ -2531,94 +3114,572 @@ function suggestActivity() {
 }
 
 function renderComments(profil, poids, bmr, tdee, objectif, prot, lip, gluc, fibres, slope, kcalAdj, deficitBase) {
-  const sexeLabel = profil.sexe === 'homme' ? 'homme' : 'femme';
-  const activiteLabels = {
-    'sedentaire': 'sédentaire', 'legere': 'légère',
-    'moderee': 'modérée', 'elevee': 'élevée', 'tres-elevee': 'très élevée'
-  };
-  const actLabel = activiteLabels[profil.activite] || profil.activite;
-  const coeff = ACTIVITE_COEFFS_B[profil.activite];
+  const block = document.getElementById('commentBlock');
+  let html = '';
 
-  const items = [];
-
-  // Formule
-  items.push({
-    cls: 'ci-formula',
-    label: '📐 Formule de Mifflin-St Jeor',
-    text: `Métabolisme de base calculé pour un ${sexeLabel} de ${profil.age} ans, ${profil.taille} cm, ${poids} kg : ${bmr.toLocaleString('fr-FR')} kcal/j. Multiplié par le coefficient d'activité ${actLabel} (×${coeff}) = ${tdee.toLocaleString('fr-FR')} kcal de dépense totale. Cette formule est la référence scientifique actuelle, plus précise que Harris-Benedict pour les adultes modernes.`
-  });
-
-  // Déficit
-  items.push({
-    cls: 'ci-macro',
-    label: '⚖️ Déficit calorique',
-    text: `Un déficit de ${deficitBase} kcal/j est appliqué sur ta TDEE pour viser une perte de ~0,3–0,5 kg/semaine, soit le rythme optimal pour préserver la masse musculaire. En dessous de 1 200 kcal, un plancher de sécurité est activé automatiquement.`
-  });
-
-  // Macros
-  items.push({
-    cls: 'ci-macro',
-    label: '🥩 Protéines — 2g/kg',
-    text: `${prot}g/j (${prot*4} kcal). Apport élevé justifié en phase de perte de poids pour préserver la masse musculaire et maintenir la satiété. La recherche sportive recommande 1,6 à 2,2 g/kg en restriction calorique.`
-  });
-
-  items.push({
-    cls: 'ci-macro',
-    label: '🥑 Lipides — 0,8g/kg',
-    text: `${lip}g/j (${lip*9} kcal). Minimum recommandé pour le bon fonctionnement hormonal (testostérone, hormones thyroïdiennes) et l'absorption des vitamines liposolubles A, D, E, K.`
-  });
-
-  items.push({
-    cls: 'ci-macro',
-    label: '🍚 Glucides — kcal restantes',
-    text: `${gluc}g/j (${gluc*4} kcal). Calculés par différence après attribution des protéines et lipides. Constituent le carburant principal de l'effort et du cerveau.`
-  });
-
-  items.push({
-    cls: 'ci-macro',
-    label: '🥦 Fibres — 15g/1000 kcal',
-    text: `${fibres}g/j. Ratio basé sur les recommandations de l'ANSES. Les fibres améliorent la satiété, la glycémie post-prandiale et la santé du microbiote intestinal.`
-  });
-
-  // Tendance
+  // Analyse de tendance uniquement
   if (slope !== null) {
+    const slopeSign = slope >= 0 ? '+' : '';
     if (slope >= -0.2) {
-      items.push({
-        cls: 'ci-trend',
-        label: '📉 Analyse de tendance',
-        text: `Sur les 3 derniers jours, la tendance est de ${slope >= 0 ? '+' : ''}${slope.toFixed(2)} kg. Un rythme de perte optimal se situe entre -0,2 et -0,7 kg/semaine. Si la tendance est insuffisante, il est recommandé de réduire l'apport de 200 kcal ou d'augmenter la dépense énergétique.`
-      });
+      html += `<div class="comment-item ci-trend">
+        <div class="comment-item-label">📉 Analyse de tendance</div>
+        <div class="comment-item-text">Sur les 3 derniers jours, la tendance est de <strong>${slopeSign}${slope.toFixed(2)} kg</strong>. Un rythme de perte optimal se situe entre −0,2 et −0,7 kg/semaine. La tendance est insuffisante — utilise les boutons ci-dessus pour réduire ton apport de 200 kcal ou augmenter ton activité.</div>
+      </div>`;
     } else {
-      items.push({
-        cls: 'ci-formula',
-        label: '📉 Analyse de tendance',
-        text: `Sur les 3 derniers jours, la tendance est de ${slope.toFixed(2)} kg — bonne progression. Maintiens ces habitudes alimentaires et d'activité physique.`
-      });
+      html += `<div class="comment-item ci-formula">
+        <div class="comment-item-label">📉 Analyse de tendance</div>
+        <div class="comment-item-text">Tendance sur 3 jours : <strong>${slope.toFixed(2)} kg</strong> — bonne progression. Continue sur cette lancée et réévalue dans 3 à 5 jours.</div>
+      </div>`;
     }
   } else {
-    items.push({
-      cls: 'ci-trend',
-      label: '📉 Analyse de tendance',
-      text: 'Pas encore assez de pesées sur 3 jours pour analyser la tendance. Enregistre tes pesées quotidiennement pour activer cette fonctionnalité.'
-    });
+    html += `<div class="comment-item ci-trend">
+      <div class="comment-item-label">📉 Analyse de tendance</div>
+      <div class="comment-item-text">Pas encore assez de pesées sur 3 jours pour analyser la tendance. Enregistre tes pesées quotidiennement pour activer cette fonctionnalité.</div>
+    </div>`;
   }
 
   // Ajustement actif
   if (kcalAdj < 0) {
-    items.push({
-      cls: 'ci-adjust',
-      label: '🔧 Ajustement actif',
-      text: `Un ajustement de ${kcalAdj} kcal est appliqué à ton objectif suite à une tendance insuffisante. Si après 5–7 jours la tendance reste plate, un nouvel ajustement de -200 kcal peut être envisagé. Au-delà de -600 kcal de restriction totale, il est préférable d'augmenter l'activité physique.`
-    });
+    html += `<div class="comment-item ci-adjust">
+      <div class="comment-item-label">🔧 Ajustement actif : ${kcalAdj} kcal</div>
+      <div class="comment-item-text">Réévalue dans 5–7 jours. Si la tendance reste plate, un nouvel ajustement peut être envisagé. Au-delà de −600 kcal de restriction totale, préfère augmenter l\'activité physique.</div>
+    </div>`;
   }
 
-  const block = document.getElementById('commentBlock');
-  block.innerHTML = items.map(i => `
-    <div class="comment-item ${i.cls}">
-      <div class="comment-item-label">${i.label}</div>
-      <div class="comment-item-text">${i.text}</div>
-    </div>
-  `).join('');
+  block.innerHTML = html;
+}
+
+
+// ===== MACRO TOOLTIP =====
+const MACRO_INFO = {
+  proteine: {
+    emoji: '🥩', name: 'Protéines', rule: '2g / kg de poids',
+    color: '#4D9EFF',
+    kcalPer: 4,
+    getText: (g, kg) => `<strong>${g}g par jour</strong> pour un poids de ${kg} kg.<br><br>
+Un apport de <strong>2g/kg</strong> est recommandé en phase de perte de poids pour trois raisons principales :<br><br>
+• <strong>Préservation musculaire</strong> — En déficit calorique, le corps puise dans les réserves musculaires si les protéines sont insuffisantes.<br>
+• <strong>Satiété</strong> — Les protéines sont le macronutriment le plus rassasiant par calorie.<br>
+• <strong>Effet thermique</strong> — La digestion des protéines consomme 20 à 30% de leurs calories (vs 5–10% pour les glucides).`,
+    sources: 'Sources : Helms et al. 2014 · ISSN Position Stand 2017 · Morton et al. 2018'
+  },
+  lipide: {
+    emoji: '🥑', name: 'Lipides', rule: '0,8g / kg de poids',
+    color: '#FF9A3C',
+    kcalPer: 9,
+    getText: (g, kg) => `<strong>${g}g par jour</strong> pour un poids de ${kg} kg.<br><br>
+Le minimum de <strong>0,8g/kg</strong> est nécessaire pour :<br><br>
+• <strong>Équilibre hormonal</strong> — La testostérone, les œstrogènes et les hormones thyroïdiennes sont synthétisées à partir du cholestérol alimentaire.<br>
+• <strong>Vitamines liposolubles</strong> — L'absorption des vitamines A, D, E, K requiert la présence de lipides.<br>
+• <strong>Santé cellulaire</strong> — Les acides gras essentiels (oméga-3, oméga-6) participent à l'intégrité des membranes cellulaires.`,
+    sources: 'Sources : ANSES 2019 · Volek et al. 2004 · Hamalainen et al. 1984'
+  },
+  glucide: {
+    emoji: '🍚', name: 'Glucides', rule: 'kcal restantes après P + L',
+    color: '#C8FF00',
+    kcalPer: 4,
+    getText: (g, kg) => `<strong>${g}g par jour</strong> — calculés par différence.<br><br>
+Les glucides sont attribués en dernier après protéines et lipides car ils sont <strong>le levier le plus flexible</strong> :<br><br>
+• <strong>Carburant de l'effort</strong> — Le glycogène musculaire est le substrat préférentiel lors des efforts intenses.<br>
+• <strong>Fonction cérébrale</strong> — Le cerveau consomme ~120g de glucose par jour au repos.<br>
+• <strong>Timing</strong> — Privilégie les glucides autour des entraînements pour maximiser la performance et la récupération.`,
+    sources: 'Sources : Burke et al. 2011 · Jeukendrup 2017 · Thomas et al. 2016'
+  },
+  fibre: {
+    emoji: '🥦', name: 'Fibres', rule: '15g / 1 000 kcal',
+    color: '#00D68F',
+    kcalPer: 0,
+    getText: (g, kg) => `<strong>${g}g par jour</strong> basés sur l'objectif calorique.<br><br>
+Le ratio de <strong>15g/1000 kcal</strong> est la recommandation de l'ANSES. Les fibres jouent un rôle clé dans :<br><br>
+• <strong>Satiété</strong> — Les fibres solubles forment un gel qui ralentit la vidange gastrique et prolonge la sensation de satiété.<br>
+• <strong>Glycémie</strong> — Elles réduisent l'index glycémique des repas et limitent les pics d'insuline.<br>
+• <strong>Microbiote</strong> — Les fibres prébiotiques nourrissent les bactéries bénéfiques du côlon, impactant l'immunité et l'inflammation.`,
+    sources: 'Sources : ANSES 2019 · Slavin 2013 · Dahl & Stewart 2015'
+  }
+};
+
+// Store last computed values for tooltip
+window._lastMacros = {};
+
+function openTooltip(type) {
+  const info = MACRO_INFO[type];
+  if (!info) return;
+  const m = window._lastMacros;
+  const g  = m[type] || 0;
+  const kg = m.poids  || 0;
+  const kcal = info.kcalPer > 0 ? (g * info.kcalPer) + ' kcal' : 'Non calorique';
+
+  document.getElementById('ttEmoji').textContent = info.emoji;
+  document.getElementById('ttName').textContent  = info.name;
+  document.getElementById('ttRule').textContent  = info.rule;
+  document.getElementById('ttVal').textContent   = g;
+  document.getElementById('ttVal').style.color   = info.color;
+  document.getElementById('ttKcal').textContent  = kcal;
+  document.getElementById('ttText').innerHTML    = info.getText(g, kg);
+  document.getElementById('ttSources').textContent = info.sources;
+
+  document.getElementById('macroTooltip').classList.add('open');
+}
+
+function closeTooltip() {
+  document.getElementById('macroTooltip').classList.remove('open');
+}
+
+
+// ===== CALENDRIER =====
+const CAL_KEY = 'chngr_calendrier_v2';
+const JOURS   = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+const JOURS_SHORT = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+
+// Monday of ISO week containing date d
+function getMonday(d) {
+  const date = new Date(d);
+  const day  = date.getDay() || 7;
+  date.setDate(date.getDate() - day + 1);
+  date.setHours(0,0,0,0);
+  return date;
+}
+
+function addDays(d, n) {
+  const r = new Date(d);
+  r.setDate(r.getDate() + n);
+  return r;
+}
+
+function isoDate(d) { return d.toISOString().slice(0,10); }
+
+function weekKey(monday) { return isoDate(monday); }
+
+function loadCal()  {
+  try { return JSON.parse(localStorage.getItem(CAL_KEY)) || {}; }
+  catch { return {}; }
+}
+function saveCal(data) { localStorage.setItem(CAL_KEY, JSON.stringify(data)); }
+
+// state
+window._calMonday = getMonday(new Date());
+window._calOpenDay = null;
+
+function loadCalendrier() {
+  window._calMonday = window._calMonday || getMonday(new Date());
+  renderCalendrier();
+}
+
+function calChangeWeek(dir) {
+  window._calMonday = addDays(window._calMonday, dir * 7);
+  window._calOpenDay = null;
+  renderCalendrier();
+}
+
+function renderCalendrier() {
+  const monday   = window._calMonday;
+  const todayStr = isoDate(new Date());
+  const wk       = weekKey(monday);
+  const data     = loadCal();
+  const weekData = data[wk] || {};
+
+  // Profil + besoins for macro calc
+  const profil   = loadProfil();
+  const lastW    = weights.length > 0
+    ? [...weights].sort((a,b) => new Date(b.date)-new Date(a.date))[0].weight : null;
+
+  // Week label
+  const sunday = addDays(monday, 6);
+  const fmt = d => d.toLocaleDateString('fr-FR', { day:'numeric', month:'short' });
+  document.getElementById('calWeekLabel').textContent =
+    fmt(monday) + ' – ' + fmt(sunday);
+
+  const thisMonday = getMonday(new Date());
+  const isCurrentWeek = isoDate(monday) === isoDate(thisMonday);
+  document.getElementById('calWeekSub').textContent =
+    isCurrentWeek ? 'Semaine en cours' : (monday < thisMonday ? 'Semaine passée' : 'Semaine à venir');
+
+  // Disable future-beyond-next-week nav
+  const nextWeek = addDays(thisMonday, 7);
+  document.getElementById('calNextBtn').classList.toggle('disabled', monday >= nextWeek);
+
+  // Pre-compute weekly macros (needed for each day calculation)
+  const weekMacros = (profil && lastW) ? calcWeekMacros(profil, lastW, weekData, monday) : null;
+
+  // Summary
+  let nHigh=0, nLow=0, nSpecial=0;
+
+  // Render days
+  const container = document.getElementById('calDaysList');
+  let html = '';
+
+  for (let i = 0; i < 7; i++) {
+    const date    = addDays(monday, i);
+    const dateStr = isoDate(date);
+    const dayData = weekData[dateStr] || {};
+    const isToday = dateStr === todayStr;
+    const isPast  = date < new Date(todayStr);
+
+    const hasSport   = !!dayData.sport;
+    const hasSpecial = !!dayData.special;
+    const isHigh     = hasSport;
+    const isSpecialDay = hasSpecial && !hasSport;
+    const isLow      = !isHigh && !isSpecialDay;
+
+    if (isHigh)        nHigh++;
+    else if (isSpecialDay) nSpecial++;
+    else                nLow++;
+
+    // Compute macros for this day
+    const macros = (profil && lastW && weekMacros) ? calcDayMacros(profil, lastW, isHigh, isSpecialDay, weekMacros) : null;
+
+    // Type badge
+    let badgeHtml = '';
+    if (isHigh) {
+      badgeHtml = '<span class="cal-day-type-badge badge-high">🔴 Jour Haut</span>';
+    } else if (isSpecialDay) {
+      badgeHtml = '<span class="cal-day-type-badge badge-special">🟠 Repas Spécial</span>';
+    } else {
+      badgeHtml = '<span class="cal-day-type-badge badge-low">🔵 Jour Bas</span>';
+    }
+
+    // Tags
+    let tagsHtml = '';
+    if (dayData.sportLabel) tagsHtml += `<span class="cal-tag">🏋️ ${dayData.sportLabel}</span>`;
+    if (dayData.specialLabel) tagsHtml += `<span class="cal-tag">🍽 ${dayData.specialLabel}</span>`;
+
+    // Glucides
+    let glucHtml = '';
+    if (macros) {
+      glucHtml = `<div class="cal-day-glucides">${macros.glucides}g<span>glucides</span></div>`;
+    }
+
+    const isOpen = window._calOpenDay === dateStr;
+    const panelOpen = isOpen ? 'open' : '';
+    const chevOpen  = isOpen ? 'open' : '';
+
+    // Panel content
+    const sportChecked   = hasSport   ? 'checked' : '';
+    const specialChecked = hasSpecial ? 'checked' : '';
+    const sportLabel     = dayData.sportLabel || '';
+    const specialLabel   = dayData.specialLabel || '';
+
+    let macroMiniHtml = '';
+    if (macros) {
+      macroMiniHtml = `
+        <div class="cal-macros-mini">
+          <div class="cmm-item"><div class="cmm-val" style="color:#4D9EFF">${macros.proteines}g</div><div class="cmm-label">Prot.</div></div>
+          <div class="cmm-item"><div class="cmm-val" style="color:#FF9A3C">${macros.lipides}g</div><div class="cmm-label">Lip.</div></div>
+          <div class="cmm-item"><div class="cmm-val" style="color:#C8FF00">${macros.glucides}g</div><div class="cmm-label">Gluc.</div></div>
+        </div>`;
+    }
+
+    // Special tip
+    const specialTip = isSpecialDay ? getSpecialTip(dayData.specialLabel) : '';
+    const specialTipVisible = isSpecialDay && isOpen ? 'visible' : '';
+
+    const dayClass = [
+      'cal-day',
+      isToday ? 'is-today' : '',
+      isHigh ? 'is-high' : isSpecialDay ? 'is-special' : 'is-low'
+    ].filter(Boolean).join(' ');
+
+    html += `
+    <div class="${dayClass}" id="calDay-${dateStr}">
+      <div class="cal-day-header" onclick="calToggleDay('${dateStr}')">
+        <div class="cal-day-date-wrap">
+          <div class="cal-day-num">${date.getDate()}</div>
+          <div class="cal-day-name">${JOURS_SHORT[i]}</div>
+        </div>
+        <div class="cal-day-center">
+          ${badgeHtml}
+          <div class="cal-day-tags">${tagsHtml}</div>
+        </div>
+        ${glucHtml}
+        <div class="cal-day-chevron ${chevOpen}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="cal-day-panel ${panelOpen}">
+
+        <!-- Sport toggle -->
+        <div>
+          <div class="cal-panel-row">
+            <div>
+              <div class="cal-panel-label">🏋️ Séance de sport</div>
+              <div class="cal-panel-sub">Journée Haute — glucides complets</div>
+            </div>
+            <label class="toggle-wrap">
+              <input type="checkbox" ${sportChecked} onchange="calSetSport('${dateStr}', this.checked)">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <input type="text" class="cal-sport-input" id="sportInput-${dateStr}"
+            placeholder="Type de séance (muscu, cardio, run…)"
+            value="${sportLabel}"
+            style="display:${hasSport?'block':'none'}"
+            oninput="calSetSportLabel('${dateStr}', this.value)">
+        </div>
+
+        <!-- Special toggle -->
+        <div>
+          <div class="cal-panel-row">
+            <div>
+              <div class="cal-panel-label">🍽 Repas spécial</div>
+              <div class="cal-panel-sub">Soirée, famille, restaurant…</div>
+            </div>
+            <label class="toggle-wrap">
+              <input type="checkbox" ${specialChecked} onchange="calSetSpecial('${dateStr}', this.checked)">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <input type="text" class="cal-sport-input" id="specialInput-${dateStr}"
+            placeholder="Occasion (ex: repas famille, anniversaire…)"
+            value="${specialLabel}"
+            style="display:${hasSpecial?'block':'none'}"
+            oninput="calSetSpecialLabel('${dateStr}', this.value)">
+        </div>
+
+        <!-- Special tip -->
+        <div class="cal-special-tip ${specialTipVisible}" id="specialTip-${dateStr}">
+          <div class="cal-special-tip-title">💡 Conseil nutrition</div>
+          <div class="cal-special-tip-text" id="specialTipText-${dateStr}">${specialTip}</div>
+        </div>
+
+        ${macroMiniHtml}
+      </div>
+    </div>`;
+  }
+
+  container.innerHTML = html;
+
+  document.getElementById('calSumHigh').textContent    = nHigh;
+  document.getElementById('calSumLow').textContent     = nLow;
+  document.getElementById('calSumSpecial').textContent = nSpecial;
+
+  renderCalComment(nHigh, nLow, nSpecial, weekData, profil, lastW);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// LOGIQUE FONDAMENTALE :
+// L'objectif calorique et les macros HEBDOMADAIRES sont fixes.
+// Le calendrier redistribue uniquement les GLUCIDES entre les jours
+// selon l'activité — sans changer la cible globale sur 7 jours.
+//
+// Principe :
+//   • Protéines  : identiques tous les jours (2g/kg)
+//   • Lipides    : identiques tous les jours (0.8g/kg)
+//   • Glucides   : augmentés les jours Hauts, diminués les jours Bas
+//     Le transfert est budgété depuis les jours Bas vers les jours Hauts
+//     de façon à ce que la somme hebdomadaire reste égale à objectif × 7.
+//
+// Calcul du transfert (t) par semaine :
+//   Soit H = nb jours hauts, L = nb jours bas, S = nb jours spéciaux
+//   Glucides bas    = glucBase - t
+//   Glucides haut   = glucBase + t * L / H  (si H > 0)
+//   Glucides spécial= glucBase  (neutre — repas social géré autrement)
+//   Conservation : H*(glucBase + t*L/H) + L*(glucBase-t) + S*glucBase = 7*glucBase ✓
+// ─────────────────────────────────────────────────────────────────
+
+function getBaseObjectif(profil, poids) {
+  let bmr;
+  if (profil.sexe === 'homme') {
+    bmr = 10 * poids + 6.25 * profil.taille - 5 * profil.age + 5;
+  } else {
+    bmr = 10 * poids + 6.25 * profil.taille - 5 * profil.age - 161;
+  }
+  const coeff  = ACTIVITE_COEFFS_B[profil.activite] || 1.2;
+  const tdee   = Math.round(bmr * coeff);
+  const adj    = parseInt(localStorage.getItem(BESOINS_KEY) || '0');
+  return Math.max(1200, tdee - 200 + adj);
+}
+
+function calcWeekMacros(profil, poids, weekData, monday) {
+  // Count day types for the week
+  let nHigh = 0, nLow = 0, nSpecial = 0;
+  for (let i = 0; i < 7; i++) {
+    const ds  = isoDate(addDays(monday, i));
+    const day = weekData[ds] || {};
+    if (day.sport)        nHigh++;
+    else if (day.special) nSpecial++;
+    else                  nLow++;
+  }
+
+  const objectif      = getBaseObjectif(profil, poids);
+  const proteines     = Math.round(poids * 2);
+  const lipides       = Math.round(poids * 0.8);
+  const kcalP         = proteines * 4;
+  const kcalL         = lipides * 9;
+  const glucBaseKcal  = Math.max(0, objectif - kcalP - kcalL);
+  const glucBase      = Math.round(glucBaseKcal / 4);
+
+  // Transfer: 50g of glucides shifted from low→high days
+  const TRANSFERT_G = 50; // g glucides déplacés depuis chaque jour bas
+
+  return { objectif, proteines, lipides, glucBase, nHigh, nLow, nSpecial, TRANSFERT_G, kcalP, kcalL };
+}
+
+function calcDayMacros(profil, poids, isHigh, isSpecial, weekMacros) {
+  const { objectif, proteines, lipides, glucBase, nHigh, nLow, TRANSFERT_G } = weekMacros;
+
+  let glucides;
+  if (isHigh) {
+    // Reçoit le budget transféré depuis les jours bas
+    const bonusParJourHaut = nHigh > 0 ? Math.round((nLow * TRANSFERT_G) / nHigh) : 0;
+    glucides = glucBase + bonusParJourHaut;
+  } else if (isSpecial) {
+    // Repas spécial = neutre sur les glucides (gestion qualitative)
+    glucides = glucBase;
+  } else {
+    // Jour bas : cède son budget de transfert
+    glucides = Math.max(0, glucBase - TRANSFERT_G);
+  }
+
+  const kcalGlucides = glucides * 4;
+  const kcalJour = proteines * 4 + lipides * 9 + kcalGlucides;
+
+  return { proteines, lipides, glucides, kcalJour };
+}
+
+function getSpecialTip(label) {
+  const l = (label || '').toLowerCase();
+  let ctx = 'repas festif';
+  if (l.includes('famille'))               ctx = 'repas en famille';
+  else if (l.includes('restau'))           ctx = 'restaurant';
+  else if (l.includes('soir'))             ctx = 'soirée';
+  else if (l.includes('anniv'))            ctx = 'anniversaire';
+  else if (l.includes('noel') || l.includes('noël')) ctx = 'repas de Noël';
+
+  const tips = {
+    restaurant:       "Au restaurant, priorise les protéines (viande, poisson) et les légumes. Évite le pain et les entrées riches. Si tu prends un dessert, saute les glucides du déjeuner. Bois de l'eau entre les plats pour ralentir la prise alimentaire.",
+    soirée:           "En soirée festive, mange un repas riche en protéines et légumes avant de partir pour arriver rassasié. Limite les amuse-bouches. Si alcool, préfère les spiritueux avec eau gazeuse (moins de sucre) et réduis les glucides du dîner.",
+    anniversaire:     "Pour un anniversaire, allège le repas précédent (salade protéinée). Profite du gâteau sans culpabilité — une journée isolée n'impacte pas la progression. Compense en augmentant légèrement l'activité physique le lendemain.",
+    'repas de Noël':  "Pour les fêtes, 1 jour de liberté ne brise pas la progression. Mange lentement, sans restriction. Le lendemain : journée basse stricte (glucides minimaux) et 30 à 45 min de marche pour relancer la sensibilité à l'insuline.",
+    'repas en famille':"En repas de famille, contrôle les portions plutôt que les aliments. Commence par les légumes et protéines. Prends de petites portions des plats riches. Évite les resservis automatiques. Une assiette équilibrée reste possible en toute convivialité.",
+    'repas festif':   "Pour ce repas festif, mange normalement sur les 2 repas précédents (protéines + légumes). Apprécie le repas sans calculer — un excès ponctuel est marginal sur la progression globale. Reprends le protocole normal le lendemain."
+  };
+
+  return tips[ctx] || tips['repas festif'];
+}
+function renderCalComment(nHigh, nLow, nSpecial, weekData, profil, lastW) {
+  const el = document.getElementById('calCommentItems');
+  if (!el) return;
+
+  const wm    = (profil && lastW) ? calcWeekMacros(profil, lastW, weekData, window._calMonday) : null;
+  const total = nHigh + nLow + nSpecial;
+  let html    = '';
+
+  // ── Principe ──────────────────────────────────────────────────
+  html += `<div class="cal-comment-item cal-ci-base">
+    <div class="cal-comment-item-label">📋 Principe — Conservation hebdomadaire</div>
+    <div class="cal-comment-item-text">L'objectif calorique et les macros totaux restent identiques sur 7 jours. Le calendrier <strong>redistribue uniquement les glucides</strong> entre les journées : les jours d'entraînement recoivent un bonus pris sur le budget des jours de repos. Proteines et lipides ne changent jamais.</div>
+  </div>`;
+
+  // ── Chiffres de la semaine ─────────────────────────────────────
+  if (wm) {
+    const bonusHaut = wm.nHigh > 0 ? Math.round((wm.nLow * wm.TRANSFERT_G) / wm.nHigh) : 0;
+    const glucHaut  = wm.glucBase + bonusHaut;
+    const glucBas   = Math.max(0, wm.glucBase - wm.TRANSFERT_G);
+    const verif     = wm.nHigh * glucHaut + wm.nLow * glucBas + wm.nSpecial * wm.glucBase;
+    const cible7    = wm.glucBase * 7;
+
+    html += `<div class="cal-comment-item cal-ci-base">
+      <div class="cal-comment-item-label">⚖️ Bilan glucides hebdomadaires</div>
+      <div class="cal-comment-item-text">
+        Objectif quotidien de base : <strong>${wm.objectif} kcal</strong> — dont <strong>${wm.glucBase}g glucides/j</strong>.<br>
+        Cible totale semaine : <strong>${wm.glucBase * 7}g glucides</strong> (${wm.objectif * 7} kcal).<br>
+        Glucides redistribués : <strong>${verif}g</strong> sur 7 jours${verif === cible7 ? ' ✓ équilibre respecté' : ' (semaine incomplète)'}.
+      </div>
+    </div>`;
+
+    if (nHigh > 0) {
+      html += `<div class="cal-comment-item cal-ci-high">
+        <div class="cal-comment-item-label">🔴 Jours Hauts — ${nHigh} séance${nHigh>1?'s':''}</div>
+        <div class="cal-comment-item-text">Glucides portés à <strong>${glucHaut}g</strong> (+${bonusHaut}g vs base). Ce surplus est prélevé sur les jours bas de façon à ne pas modifier la cible hebdomadaire. Charge les glucides complexes (avoine, riz, patate douce) dans les 2h avant et après la séance.</div>
+      </div>`;
+    }
+
+    if (nLow > 0) {
+      html += `<div class="cal-comment-item cal-ci-low">
+        <div class="cal-comment-item-label">🔵 Jours Bas — ${nLow} jour${nLow>1?'s':''}</div>
+        <div class="cal-comment-item-text">Glucides réduits à <strong>${glucBas}g</strong> (−${wm.TRANSFERT_G}g vs base). Ce budget est transféré vers les jours d'entraînement. En repos, le glycogène est moins sollicité — favorise les lipides et les proteines comme substrats energetiques.</div>
+      </div>`;
+    }
+
+    if (nSpecial > 0) {
+      html += `<div class="cal-comment-item cal-ci-special">
+        <div class="cal-comment-item-label">🟠 Repas Spéciaux — ${nSpecial} occasion${nSpecial>1?'s':''}</div>
+        <div class="cal-comment-item-text">Les glucides restent à la base (<strong>${wm.glucBase}g</strong>). Le repas special est neutre sur la redistribution. La gestion est qualitative : allège les repas du matin, mange convenablement lors du repas social, reprise du protocole le lendemain. Un repas festif ponctuel n'affecte pas la progression globale.</div>
+      </div>`;
+    }
+  } else {
+    html += `<div class="cal-comment-item cal-ci-base">
+      <div class="cal-comment-item-label">⚠️ Profil incomplet</div>
+      <div class="cal-comment-item-text">Complète ton profil (sexe, age, taille, activite) et enregistre une pesee pour voir les calculs de redistribution glucidique.</div>
+    </div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+function calToggleDay(dateStr) {
+  window._calOpenDay = (window._calOpenDay === dateStr) ? null : dateStr;
+  renderCalendrier();
+}
+
+function calSetSport(dateStr, checked) {
+  const data = loadCal();
+  const wk   = weekKey(window._calMonday);
+  if (!data[wk]) data[wk] = {};
+  if (!data[wk][dateStr]) data[wk][dateStr] = {};
+  data[wk][dateStr].sport = checked;
+  if (!checked) delete data[wk][dateStr].sportLabel;
+  saveCal(data);
+
+  // Show/hide input
+  const inp = document.getElementById('sportInput-' + dateStr);
+  if (inp) inp.style.display = checked ? 'block' : 'none';
+
+  window._calOpenDay = dateStr;
+  renderCalendrier();
+}
+
+function calSetSportLabel(dateStr, val) {
+  const data = loadCal();
+  const wk   = weekKey(window._calMonday);
+  if (!data[wk]) data[wk] = {};
+  if (!data[wk][dateStr]) data[wk][dateStr] = {};
+  data[wk][dateStr].sportLabel = val;
+  saveCal(data);
+}
+
+function calSetSpecial(dateStr, checked) {
+  const data = loadCal();
+  const wk   = weekKey(window._calMonday);
+  if (!data[wk]) data[wk] = {};
+  if (!data[wk][dateStr]) data[wk][dateStr] = {};
+  data[wk][dateStr].special = checked;
+  if (!checked) delete data[wk][dateStr].specialLabel;
+  saveCal(data);
+
+  const inp = document.getElementById('specialInput-' + dateStr);
+  if (inp) inp.style.display = checked ? 'block' : 'none';
+
+  window._calOpenDay = dateStr;
+  renderCalendrier();
+}
+
+function calSetSpecialLabel(dateStr, val) {
+  const data = loadCal();
+  const wk   = weekKey(window._calMonday);
+  if (!data[wk]) data[wk] = {};
+  if (!data[wk][dateStr]) data[wk][dateStr] = {};
+  data[wk][dateStr].specialLabel = val;
+  saveCal(data);
+
+  // Update tip in real time
+  const tipEl  = document.getElementById('specialTip-' + dateStr);
+  const tipTxt = document.getElementById('specialTipText-' + dateStr);
+  if (tipEl && tipTxt && data[wk][dateStr].special) {
+    tipEl.classList.add('visible');
+    tipTxt.innerHTML = getSpecialTip(val);
+  }
 }
 
 // ===== NAV BOTTOM =====
@@ -3005,15 +4066,17 @@ function switchTab(btn, tab) {
   btn.classList.add('active');
 
   // Show/hide screens
-  document.getElementById('pesesScreen').style.display   = tab === 'pesees'   ? 'block' : 'none';
-  document.getElementById('profilScreen').style.display  = tab === 'profil'   ? 'block' : 'none';
-  document.getElementById('besoinsScreen').style.display = tab === 'besoins'  ? 'block' : 'none';
+  document.getElementById('pesesScreen').style.display      = tab === 'pesees'     ? 'block' : 'none';
+  document.getElementById('profilScreen').style.display     = tab === 'profil'     ? 'block' : 'none';
+  document.getElementById('besoinsScreen').style.display    = tab === 'besoins'    ? 'block' : 'none';
+  document.getElementById('calendrierScreen').style.display = tab === 'calendrier' ? 'block' : 'none';
 
   // FAB only on pesées
   document.querySelector('.fab').style.display = tab === 'pesees' ? 'flex' : 'none';
 
-  if (tab === 'profil')  { loadProfilUI(); }
-  else if (tab === 'besoins') { loadBesoins(); }
+  if (tab === 'profil')      { loadProfilUI(); }
+  else if (tab === 'besoins')     { loadBesoins(); }
+  else if (tab === 'calendrier')  { loadCalendrier(); }
   else if (tab !== 'pesees') { showToast('Bientôt disponible 🚀', ''); }
 }
 
@@ -3026,18 +4089,21 @@ function loadProfil() {
 }
 
 function saveProfil() {
-  const age    = parseInt(document.getElementById('inputAge').value);
-  const taille = parseInt(document.getElementById('inputTaille').value);
-  const sexe   = window._sexe || null;
-  const activite = window._activite || null;
+  // Flush current input values before validating
+  onProfilChange();
+  const p = loadProfil();
+  const sexe     = p.sexe;
+  const age      = p.age;
+  const taille   = p.taille;
+  const activite = p.activite;
 
   if (!sexe)    { showToast('Sélectionne ton sexe', '⚠️'); return; }
   if (!age || age < 10 || age > 100) { showToast('Âge invalide', '⚠️'); return; }
   if (!taille || taille < 100 || taille > 250) { showToast('Taille invalide', '⚠️'); return; }
   if (!activite) { showToast('Sélectionne ton niveau d\'activité', '⚠️'); return; }
 
-  const profil = { sexe, age, taille, activite };
-  localStorage.setItem(PROFIL_KEY, JSON.stringify(profil));
+  // Already saved in localStorage via autoSaveProfil — just confirm
+  const profil = p;
 
   // Show saved badge
   const badge = document.getElementById('profilSavedBadge');
@@ -3051,11 +4117,12 @@ function saveProfil() {
 
 function loadProfilUI() {
   const p = loadProfil();
-  window._sexe     = p.sexe     || null;
-  window._activite = p.activite || null;
 
-  if (p.age)    document.getElementById('inputAge').value    = p.age;
-  if (p.taille) document.getElementById('inputTaille').value = p.taille;
+  // Populate inputs from saved profil
+  const ageEl    = document.getElementById('inputAge');
+  const tailleEl = document.getElementById('inputTaille');
+  if (ageEl    && p.age)    ageEl.value    = p.age;
+  if (tailleEl && p.taille) tailleEl.value = p.taille;
 
   refreshSexeUI();
   refreshActiviteUI();
@@ -3065,39 +4132,50 @@ function loadProfilUI() {
 }
 
 function setSexe(val) {
-  window._sexe = val;
+  autoSaveProfil({ sexe: val });
   refreshSexeUI();
   onProfilChange();
 }
 
 function refreshSexeUI() {
+  const p = loadProfil();
   const btnM = document.getElementById('btnMale');
   const btnF = document.getElementById('btnFemale');
-  btnM.className = 'gender-btn' + (window._sexe === 'homme' ? ' active-male' : '');
-  btnF.className = 'gender-btn' + (window._sexe === 'femme' ? ' active-female' : '');
+  if (!btnM) return;
+  btnM.className = 'gender-btn' + (p.sexe === 'homme' ? ' active-male' : '');
+  btnF.className = 'gender-btn' + (p.sexe === 'femme' ? ' active-female' : '');
 }
 
 function setActivite(val) {
-  window._activite = val;
+  autoSaveProfil({ activite: val });
   refreshActiviteUI();
   onProfilChange();
 }
 
 function refreshActiviteUI() {
+  const p = loadProfil();
   const opts = ['sedentaire','legere','moderee','elevee','tres-elevee'];
   opts.forEach(o => {
     const el = document.getElementById('radio-' + o);
-    if (el) el.className = 'activity-radio' + (window._activite === o ? ' selected' : '');
+    if (el) el.className = 'activity-radio' + (p.activite === o ? ' selected' : '');
   });
 }
 
+// Auto-save a partial update into localStorage immediately
+function autoSaveProfil(patch) {
+  const current = loadProfil();
+  const updated = Object.assign({}, current, patch);
+  localStorage.setItem(PROFIL_KEY, JSON.stringify(updated));
+}
+
 function onProfilChange() {
-  const p = {
-    sexe:     window._sexe,
-    age:      parseInt(document.getElementById('inputAge').value)    || null,
-    taille:   parseInt(document.getElementById('inputTaille').value) || null,
-    activite: window._activite
-  };
+  // Auto-save age and taille from inputs
+  const age    = parseInt(document.getElementById('inputAge')?.value)    || null;
+  const taille = parseInt(document.getElementById('inputTaille')?.value) || null;
+  if (age    && age    >= 10  && age    <= 100) autoSaveProfil({ age });
+  if (taille && taille >= 100 && taille <= 250) autoSaveProfil({ taille });
+
+  const p = loadProfil();
   updateCompletion(p);
   updateBMR(p);
 }
@@ -3333,5 +4411,27 @@ document.addEventListener('keydown', e => {
 
 init();
 </script>
+
+<!-- MACRO TOOLTIP -->
+<div class="tooltip-overlay" id="macroTooltip" onclick="closeTooltip()">
+  <div class="tooltip-sheet" onclick="event.stopPropagation()">
+    <div class="tooltip-handle"></div>
+    <div class="tooltip-header">
+      <div class="tooltip-emoji" id="ttEmoji">🥩</div>
+      <div>
+        <div class="tooltip-macro-name" id="ttName">Protéines</div>
+        <div class="tooltip-rule" id="ttRule">2g / kg de poids</div>
+      </div>
+    </div>
+    <div class="tooltip-value-row">
+      <div class="tooltip-big-val" id="ttVal" style="color:#4D9EFF">—</div>
+      <div class="tooltip-big-unit">g / jour</div>
+      <div class="tooltip-big-kcal" id="ttKcal"></div>
+    </div>
+    <div class="tooltip-text" id="ttText"></div>
+    <div class="tooltip-sources" id="ttSources"></div>
+  </div>
+</div>
+
 </body>
 </html>
