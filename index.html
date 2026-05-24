@@ -917,6 +917,362 @@
   }
 
   .show-more-btn:active { background: var(--surface); }
+
+  /* ===== PROFIL SCREEN ===== */
+  #pesesScreen { display: block; }
+  #profilScreen { display: none; }
+
+  .profil-hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .profil-avatar-big {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #80C200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .profil-hero-info { flex: 1; }
+
+  .profil-hero-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .profil-hero-sub {
+    font-size: 13px;
+    color: var(--text3);
+  }
+
+  .profil-complete-bar {
+    margin-top: 10px;
+    height: 4px;
+    background: var(--bg3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .profil-complete-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  .profil-complete-label {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 5px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  /* Form card */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .form-card-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .form-card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .fci-identity { background: #4D9EFF15; }
+  .fci-body { background: #C8FF0015; }
+  .fci-activity { background: #FF9A3C15; }
+
+  .form-card-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* Field row */
+  .field-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .field-row:last-child { border-bottom: none; }
+
+  .field-label {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .field-sub {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  /* Gender toggle */
+  .gender-toggle {
+    display: flex;
+    gap: 6px;
+  }
+
+  .gender-btn {
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--text2);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .gender-btn.active-male {
+    background: #4D9EFF18;
+    border-color: #4D9EFF60;
+    color: #4D9EFF;
+  }
+
+  .gender-btn.active-female {
+    background: #FF6B9D18;
+    border-color: #FF6B9D60;
+    color: #FF6B9D;
+  }
+
+  /* Number input row */
+  .number-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .number-field input {
+    width: 72px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xs);
+    padding: 9px 12px;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  .number-field input::-webkit-inner-spin-button,
+  .number-field input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+  .number-field input:focus { border-color: var(--accent); }
+
+  .number-unit {
+    font-size: 13px;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  /* Activity selector */
+  .activity-list { padding: 8px 0; }
+
+  .activity-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .activity-option:last-child { border-bottom: none; }
+  .activity-option:active { background: var(--bg3); }
+
+  .activity-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .activity-radio.selected {
+    border-color: var(--accent);
+    background: var(--accent-dim2);
+  }
+
+  .activity-radio.selected::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .activity-info { flex: 1; }
+
+  .activity-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .activity-range {
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  .activity-emoji { font-size: 22px; }
+
+  .activity-coeff {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text3);
+    background: var(--bg3);
+    padding: 3px 8px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+  }
+
+  /* BMR result card */
+  .bmr-card {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-dim2);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .bmr-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    margin-bottom: 12px;
+  }
+
+  .bmr-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .bmr-row:last-child { margin-bottom: 0; }
+
+  .bmr-stat {
+    flex: 1;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    text-align: center;
+  }
+
+  .bmr-stat-value {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    margin-bottom: 3px;
+  }
+
+  .bmr-stat-label {
+    font-size: 10px;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Save button profil */
+  .profil-save-btn {
+    width: 100%;
+    padding: 17px;
+    background: var(--accent);
+    color: #0A0A0F;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+  }
+
+  .profil-save-btn:active { transform: scale(0.98); background: var(--accent2); }
+
+  .profil-saved-badge {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: var(--green-dim, #00D68F15);
+    border: 1px solid #00D68F30;
+    border-radius: var(--radius-sm);
+    color: #00D68F;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
 </style>
 </head>
 <body>
@@ -961,6 +1317,7 @@
 <!-- NAV TABS -->
 <nav class="nav-tabs">
   <button class="nav-tab active" onclick="switchTab(this, 'pesees')">⚖️ Pesées</button>
+  <button class="nav-tab" onclick="switchTab(this, 'profil')">👤 Données perso</button>
   <button class="nav-tab" onclick="switchTab(this, 'nutrition')">🥗 Nutrition</button>
   <button class="nav-tab" onclick="switchTab(this, 'training')">💪 Training</button>
   <button class="nav-tab" onclick="switchTab(this, 'body')">📐 Mensurations</button>
@@ -969,6 +1326,9 @@
 
 <!-- MAIN CONTENT -->
 <main class="content" id="mainContent">
+
+<!-- ===== ÉCRAN PESÉES ===== -->
+<div id="pesesScreen">
 
   <!-- Sync Panel -->
   <div class="sync-panel" id="syncPanel">
@@ -1101,6 +1461,165 @@
 
 </main>
 
+</div><!-- /pesesScreen -->
+
+<!-- ===== ÉCRAN DONNÉES PERSONNELLES ===== -->
+<div id="profilScreen">
+
+  <!-- Hero -->
+  <div class="profil-hero">
+    <div class="profil-avatar-big" id="profilAvatarEmoji">👤</div>
+    <div class="profil-hero-info">
+      <div class="profil-hero-name" id="profilHeroName">Mon Profil</div>
+      <div class="profil-hero-sub" id="profilHeroSub">Complète tes données pour des calculs précis</div>
+      <div class="profil-complete-bar">
+        <div class="profil-complete-fill" id="profilCompleteFill" style="width:0%"></div>
+      </div>
+      <div class="profil-complete-label" id="profilCompleteLabel">0% complété</div>
+    </div>
+  </div>
+
+  <!-- Identité -->
+  <div class="form-card">
+    <div class="form-card-header">
+      <div class="form-card-icon fci-identity">🪪</div>
+      <div class="form-card-title">Identité</div>
+    </div>
+
+    <!-- Sexe -->
+    <div class="field-row">
+      <div>
+        <div class="field-label">Sexe</div>
+        <div class="field-sub">Impacte le calcul du métabolisme</div>
+      </div>
+      <div class="gender-toggle">
+        <button class="gender-btn" id="btnMale" onclick="setSexe('homme')">♂ Homme</button>
+        <button class="gender-btn" id="btnFemale" onclick="setSexe('femme')">♀ Femme</button>
+      </div>
+    </div>
+
+    <!-- Âge -->
+    <div class="field-row">
+      <div>
+        <div class="field-label">Âge</div>
+        <div class="field-sub">En années révolues</div>
+      </div>
+      <div class="number-field">
+        <input type="number" id="inputAge" min="10" max="100" placeholder="—" inputmode="numeric" oninput="onProfilChange()">
+        <span class="number-unit">ans</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Corps -->
+  <div class="form-card">
+    <div class="form-card-header">
+      <div class="form-card-icon fci-body">📏</div>
+      <div class="form-card-title">Morphologie</div>
+    </div>
+
+    <!-- Taille -->
+    <div class="field-row">
+      <div>
+        <div class="field-label">Taille</div>
+        <div class="field-sub">En centimètres</div>
+      </div>
+      <div class="number-field">
+        <input type="number" id="inputTaille" min="100" max="250" placeholder="—" inputmode="numeric" oninput="onProfilChange()">
+        <span class="number-unit">cm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activité -->
+  <div class="form-card">
+    <div class="form-card-header">
+      <div class="form-card-icon fci-activity">🏃</div>
+      <div class="form-card-title">Niveau d'activité physique</div>
+    </div>
+    <div class="activity-list">
+      <div class="activity-option" onclick="setActivite('sedentaire')">
+        <div class="activity-radio" id="radio-sedentaire"></div>
+        <div class="activity-emoji">🪑</div>
+        <div class="activity-info">
+          <div class="activity-name">Sédentaire</div>
+          <div class="activity-range">Moins de 8 000 pas / jour</div>
+        </div>
+        <div class="activity-coeff">×1.2</div>
+      </div>
+      <div class="activity-option" onclick="setActivite('legere')">
+        <div class="activity-radio" id="radio-legere"></div>
+        <div class="activity-emoji">🚶</div>
+        <div class="activity-info">
+          <div class="activity-name">Légère</div>
+          <div class="activity-range">8 000 – 12 000 pas / jour</div>
+        </div>
+        <div class="activity-coeff">×1.375</div>
+      </div>
+      <div class="activity-option" onclick="setActivite('moderee')">
+        <div class="activity-radio" id="radio-moderee"></div>
+        <div class="activity-emoji">🚴</div>
+        <div class="activity-info">
+          <div class="activity-name">Modérée</div>
+          <div class="activity-range">12 000 – 16 000 pas / jour</div>
+        </div>
+        <div class="activity-coeff">×1.55</div>
+      </div>
+      <div class="activity-option" onclick="setActivite('elevee')">
+        <div class="activity-radio" id="radio-elevee"></div>
+        <div class="activity-emoji">🏋️</div>
+        <div class="activity-info">
+          <div class="activity-name">Élevée</div>
+          <div class="activity-range">16 000 – 20 000 pas / jour</div>
+        </div>
+        <div class="activity-coeff">×1.725</div>
+      </div>
+      <div class="activity-option" onclick="setActivite('tres-elevee')">
+        <div class="activity-radio" id="radio-tres-elevee"></div>
+        <div class="activity-emoji">🔥</div>
+        <div class="activity-info">
+          <div class="activity-name">Très élevée</div>
+          <div class="activity-range">Plus de 20 000 pas / jour</div>
+        </div>
+        <div class="activity-coeff">×1.9</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculs métaboliques -->
+  <div class="bmr-card" id="bmrCard" style="display:none">
+    <div class="bmr-card-label">⚡ Calculs personnalisés</div>
+    <div class="bmr-row">
+      <div class="bmr-stat">
+        <div class="bmr-stat-value" id="bmrValue">—</div>
+        <div class="bmr-stat-label">Métabolisme de base (kcal)</div>
+      </div>
+      <div class="bmr-stat">
+        <div class="bmr-stat-value" id="tdeeValue">—</div>
+        <div class="bmr-stat-label">Dépense totale (kcal/j)</div>
+      </div>
+    </div>
+    <div class="bmr-row">
+      <div class="bmr-stat">
+        <div class="bmr-stat-value" id="bmiValue">—</div>
+        <div class="bmr-stat-label">IMC</div>
+      </div>
+      <div class="bmr-stat">
+        <div class="bmr-stat-value" id="bmiCategory" style="font-size:13px;padding-top:4px">—</div>
+        <div class="bmr-stat-label">Catégorie IMC</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bouton sauvegarder -->
+  <button class="profil-save-btn" onclick="saveProfil()">Enregistrer mon profil</button>
+  <div class="profil-saved-badge" id="profilSavedBadge">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Profil enregistré avec succès
+  </div>
+
+</div><!-- /profilScreen -->
+
 <!-- FAB -->
 <button class="fab" onclick="openModal()" aria-label="Ajouter une pesée">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1136,7 +1655,7 @@
     <span>Historique</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-item" onclick="showToast('Bientôt disponible', '🚀')">
+  <div class="nav-item" onclick="switchTabFromNav(this,'profil')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
       <circle cx="12" cy="7" r="4"/>
@@ -1333,6 +1852,21 @@ function enregistrerPoids(poids, source) {
   saveData(weights);
   render();
   refreshSyncUI();
+}
+
+// ===== NAV BOTTOM =====
+function switchTabFromNav(navItem, tab) {
+  // Find matching top tab button and trigger it
+  const topBtns = document.querySelectorAll('.nav-tab');
+  topBtns.forEach(btn => {
+    const attr = btn.getAttribute('onclick');
+    if (attr && attr.includes("'" + tab + "'")) {
+      btn.click();
+    }
+  });
+  // Update bottom nav active state
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  navItem.classList.add('active');
 }
 
 // ===== INIT =====
@@ -1702,12 +2236,216 @@ function setFilter(btn, filter) {
 function switchTab(btn, tab) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  if (tab !== 'pesees') showToast('Bientôt disponible 🚀', '');
+
+  // Show/hide screens
+  document.getElementById('pesesScreen').style.display  = tab === 'pesees'  ? 'block' : 'none';
+  document.getElementById('profilScreen').style.display = tab === 'profil'  ? 'block' : 'none';
+
+  // FAB only on pesées
+  document.querySelector('.fab').style.display = tab === 'pesees' ? 'flex' : 'none';
+
+  if (tab === 'profil') {
+    loadProfilUI();
+  } else if (tab !== 'pesees') {
+    showToast('Bientôt disponible 🚀', '');
+  }
+}
+
+// ===== PROFIL DATA =====
+const PROFIL_KEY = 'chngr_profil_v1';
+
+function loadProfil() {
+  try { return JSON.parse(localStorage.getItem(PROFIL_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveProfil() {
+  const age    = parseInt(document.getElementById('inputAge').value);
+  const taille = parseInt(document.getElementById('inputTaille').value);
+  const sexe   = window._sexe || null;
+  const activite = window._activite || null;
+
+  if (!sexe)    { showToast('Sélectionne ton sexe', '⚠️'); return; }
+  if (!age || age < 10 || age > 100) { showToast('Âge invalide', '⚠️'); return; }
+  if (!taille || taille < 100 || taille > 250) { showToast('Taille invalide', '⚠️'); return; }
+  if (!activite) { showToast('Sélectionne ton niveau d\'activité', '⚠️'); return; }
+
+  const profil = { sexe, age, taille, activite };
+  localStorage.setItem(PROFIL_KEY, JSON.stringify(profil));
+
+  // Show saved badge
+  const badge = document.getElementById('profilSavedBadge');
+  badge.style.display = 'flex';
+  setTimeout(() => badge.style.display = 'none', 3000);
+
+  updateProfilHero(profil);
+  updateBMR(profil);
+  showToast('Profil enregistré !', '✓');
+}
+
+function loadProfilUI() {
+  const p = loadProfil();
+  window._sexe     = p.sexe     || null;
+  window._activite = p.activite || null;
+
+  if (p.age)    document.getElementById('inputAge').value    = p.age;
+  if (p.taille) document.getElementById('inputTaille').value = p.taille;
+
+  refreshSexeUI();
+  refreshActiviteUI();
+  updateProfilHero(p);
+  updateBMR(p);
+  updateCompletion(p);
+}
+
+function setSexe(val) {
+  window._sexe = val;
+  refreshSexeUI();
+  onProfilChange();
+}
+
+function refreshSexeUI() {
+  const btnM = document.getElementById('btnMale');
+  const btnF = document.getElementById('btnFemale');
+  btnM.className = 'gender-btn' + (window._sexe === 'homme' ? ' active-male' : '');
+  btnF.className = 'gender-btn' + (window._sexe === 'femme' ? ' active-female' : '');
+}
+
+function setActivite(val) {
+  window._activite = val;
+  refreshActiviteUI();
+  onProfilChange();
+}
+
+function refreshActiviteUI() {
+  const opts = ['sedentaire','legere','moderee','elevee','tres-elevee'];
+  opts.forEach(o => {
+    const el = document.getElementById('radio-' + o);
+    if (el) el.className = 'activity-radio' + (window._activite === o ? ' selected' : '');
+  });
+}
+
+function onProfilChange() {
+  const p = {
+    sexe:     window._sexe,
+    age:      parseInt(document.getElementById('inputAge').value)    || null,
+    taille:   parseInt(document.getElementById('inputTaille').value) || null,
+    activite: window._activite
+  };
+  updateCompletion(p);
+  updateBMR(p);
+}
+
+function updateCompletion(p) {
+  const fields = [p.sexe, p.age, p.taille, p.activite];
+  const filled = fields.filter(Boolean).length;
+  const pct = Math.round((filled / fields.length) * 100);
+  document.getElementById('profilCompleteFill').style.width = pct + '%';
+  document.getElementById('profilCompleteLabel').textContent = pct + '% complété';
+}
+
+function updateProfilHero(p) {
+  const nameEl = document.getElementById('profilHeroName');
+  const subEl  = document.getElementById('profilHeroSub');
+  const emoji  = document.getElementById('profilAvatarEmoji');
+
+  if (p.sexe) {
+    emoji.textContent = p.sexe === 'homme' ? '👨' : '👩';
+  }
+
+  const parts = [];
+  if (p.age)    parts.push(p.age + ' ans');
+  if (p.taille) parts.push(p.taille + ' cm');
+
+  if (parts.length > 0) {
+    subEl.textContent = parts.join(' · ');
+  } else {
+    subEl.textContent = 'Complète tes données pour des calculs précis';
+  }
+}
+
+const ACTIVITE_COEFFS = {
+  'sedentaire':   1.2,
+  'legere':       1.375,
+  'moderee':      1.55,
+  'elevee':       1.725,
+  'tres-elevee':  1.9
+};
+
+function updateBMR(p) {
+  const card = document.getElementById('bmrCard');
+
+  // Récupère le dernier poids enregistré
+  const lastWeight = weights.length > 0
+    ? [...weights].sort((a,b) => new Date(b.date)-new Date(a.date))[0].weight
+    : null;
+
+  if (!p.sexe || !p.age || !p.taille || !lastWeight) {
+    card.style.display = 'none';
+    return;
+  }
+
+  // Formule de Mifflin-St Jeor (la plus précise, recommandée par les nutritionnistes)
+  let bmr;
+  if (p.sexe === 'homme') {
+    bmr = 10 * lastWeight + 6.25 * p.taille - 5 * p.age + 5;
+  } else {
+    bmr = 10 * lastWeight + 6.25 * p.taille - 5 * p.age - 161;
+  }
+
+  bmr = Math.round(bmr);
+
+  // TDEE = Total Daily Energy Expenditure
+  const coeff = p.activite ? ACTIVITE_COEFFS[p.activite] : null;
+  const tdee  = coeff ? Math.round(bmr * coeff) : null;
+
+  // IMC
+  const tailleM = p.taille / 100;
+  const imc = lastWeight / (tailleM * tailleM);
+  let imcCat = '';
+  if      (imc < 18.5) imcCat = 'Maigreur';
+  else if (imc < 25)   imcCat = 'Normal';
+  else if (imc < 30)   imcCat = 'Surpoids';
+  else if (imc < 35)   imcCat = 'Obésité I';
+  else if (imc < 40)   imcCat = 'Obésité II';
+  else                 imcCat = 'Obésité III';
+
+  document.getElementById('bmrValue').textContent  = bmr.toLocaleString('fr-FR');
+  document.getElementById('tdeeValue').textContent  = tdee ? tdee.toLocaleString('fr-FR') : '—';
+  document.getElementById('bmiValue').textContent   = imc.toFixed(1);
+  document.getElementById('bmiCategory').textContent = imcCat;
+
+  card.style.display = 'block';
 }
 
 // ===== IMPORT =====
 function handleImport() {
   document.getElementById('fileInput').click();
+}
+
+// Fusionne les nouvelles entrées avec les existantes :
+// - une seule pesée par jour calendaire
+// - en cas de doublon sur un même jour, la valeur importée écrase l'ancienne
+function fusionnerPesees(nouvelles) {
+  // Construire un map jour → entrée à partir des données existantes
+  const map = new Map();
+  for (const w of weights) {
+    const key = w.date.slice(0, 10);
+    map.set(key, w);
+  }
+  // Écraser / ajouter avec les nouvelles
+  let ajouts = 0, mises_a_jour = 0;
+  for (const w of nouvelles) {
+    const key = w.date.slice(0, 10);
+    if (map.has(key)) mises_a_jour++;
+    else ajouts++;
+    map.set(key, w);
+  }
+  // Reconstruire le tableau trié par date
+  weights = Array.from(map.values()).sort((a, b) => new Date(a.date) - new Date(b.date));
+  saveData(weights);
+  render();
+  return { ajouts, mises_a_jour };
 }
 
 function handleFileImport(event) {
@@ -1721,7 +2459,7 @@ function handleFileImport(event) {
     reader.onload = function(e) {
       try {
         const lines = e.target.result.split('\n').filter(l => l.trim());
-        let imported = 0;
+        const nouvelles = [];
         for (let i = 1; i < lines.length; i++) {
           const cols = lines[i].split(',');
           if (cols.length >= 2) {
@@ -1730,24 +2468,14 @@ function handleFileImport(event) {
             if (!isNaN(weightVal) && weightVal > 20 && weightVal < 300) {
               const date = new Date(dateStr);
               if (!isNaN(date.getTime())) {
-                weights.push({ date: date.toISOString(), weight: +weightVal.toFixed(2), note: 'Import Apple Santé' });
-                imported++;
+                nouvelles.push({ date: date.toISOString(), weight: +weightVal.toFixed(2), note: 'Import Apple Santé' });
               }
             }
           }
         }
-        if (imported > 0) {
-          weights.sort((a, b) => new Date(a.date) - new Date(b.date));
-          const unique = [];
-          const seen = new Set();
-          for (const w of weights) {
-            const key = w.date.slice(0, 10);
-            if (!seen.has(key)) { seen.add(key); unique.push(w); }
-          }
-          weights = unique;
-          saveData(weights);
-          render();
-          showToast(imported + ' pesées importées !', '✓');
+        if (nouvelles.length > 0) {
+          const { ajouts, mises_a_jour } = fusionnerPesees(nouvelles);
+          showToast(ajouts + ' ajoutées · ' + mises_a_jour + ' mises à jour', '✓');
         } else {
           showToast('Format non reconnu', '⚠️');
         }
@@ -1763,7 +2491,7 @@ function handleFileImport(event) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(e.target.result, 'text/xml');
         const records = doc.querySelectorAll('Record[type="HKQuantityTypeIdentifierBodyMass"]');
-        let imported = 0;
+        const nouvelles = [];
         records.forEach(r => {
           const val = parseFloat(r.getAttribute('value'));
           const dateStr = r.getAttribute('startDate') || r.getAttribute('creationDate');
@@ -1773,16 +2501,13 @@ function handleFileImport(event) {
             if (unit === 'lb') weightKg = val * 0.453592;
             const date = new Date(dateStr);
             if (!isNaN(date.getTime()) && weightKg > 20 && weightKg < 300) {
-              weights.push({ date: date.toISOString(), weight: +weightKg.toFixed(2), note: 'Import Apple Santé' });
-              imported++;
+              nouvelles.push({ date: date.toISOString(), weight: +weightKg.toFixed(2), note: 'Import Apple Santé' });
             }
           }
         });
-        if (imported > 0) {
-          weights.sort((a, b) => new Date(a.date) - new Date(b.date));
-          saveData(weights);
-          render();
-          showToast(imported + ' pesées importées !', '✓');
+        if (nouvelles.length > 0) {
+          const { ajouts, mises_a_jour } = fusionnerPesees(nouvelles);
+          showToast(ajouts + ' ajoutées · ' + mises_a_jour + ' mises à jour', '✓');
         } else {
           showToast('Aucune donnée de poids trouvée', '⚠️');
         }
