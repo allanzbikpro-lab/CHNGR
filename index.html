@@ -920,7 +920,7 @@
 
   /* ===== PROFIL SCREEN ===== */
   #pesesScreen { display: block; }
-  #profilScreen { display: none; }
+  #profilScreen { display: none; padding-bottom: 40px; }
 
   .profil-hero {
     background: var(--surface);
@@ -1248,6 +1248,9 @@
     border: none;
     border-radius: var(--radius-sm);
     font-family: var(--font-display);
+    display: block;
+    position: relative;
+    z-index: 1;
     font-size: 15px;
     font-weight: 800;
     cursor: pointer;
@@ -2234,8 +2237,6 @@
 
 <!-- NAV TABS -->
 <nav class="nav-tabs">
-  <button class="nav-tab active" onclick="switchTab(this, 'pesees')">⚖️ Pesées</button>
-  <button class="nav-tab" onclick="switchTab(this, 'profil')">👤 Données perso</button>
   <button class="nav-tab" onclick="switchTab(this, 'besoins')">🍽 Besoins</button>
   <button class="nav-tab" onclick="switchTab(this, 'calendrier')">📅 Calendrier</button>
   <button class="nav-tab" onclick="switchTab(this, 'training')">💪 Training</button>
@@ -2462,9 +2463,9 @@
         <div class="activity-emoji">🪑</div>
         <div class="activity-info">
           <div class="activity-name">Sédentaire</div>
-          <div class="activity-range">Moins de 8 000 pas / jour</div>
+          <div class="activity-range">< 8 000 pas / jour</div>
         </div>
-        <div class="activity-coeff">×1.2</div>
+        <div class="activity-range-coeff">×1.2</div>
       </div>
       <div class="activity-option" onclick="setActivite('legere')">
         <div class="activity-radio" id="radio-legere"></div>
@@ -2473,7 +2474,6 @@
           <div class="activity-name">Légère</div>
           <div class="activity-range">8 000 – 12 000 pas / jour</div>
         </div>
-        <div class="activity-coeff">×1.375</div>
       </div>
       <div class="activity-option" onclick="setActivite('moderee')">
         <div class="activity-radio" id="radio-moderee"></div>
@@ -2482,7 +2482,6 @@
           <div class="activity-name">Modérée</div>
           <div class="activity-range">12 000 – 16 000 pas / jour</div>
         </div>
-        <div class="activity-coeff">×1.55</div>
       </div>
       <div class="activity-option" onclick="setActivite('elevee')">
         <div class="activity-radio" id="radio-elevee"></div>
@@ -2491,16 +2490,14 @@
           <div class="activity-name">Élevée</div>
           <div class="activity-range">16 000 – 20 000 pas / jour</div>
         </div>
-        <div class="activity-coeff">×1.725</div>
       </div>
       <div class="activity-option" onclick="setActivite('tres-elevee')">
         <div class="activity-radio" id="radio-tres-elevee"></div>
         <div class="activity-emoji">🔥</div>
         <div class="activity-info">
           <div class="activity-name">Très élevée</div>
-          <div class="activity-range">Plus de 20 000 pas / jour</div>
+          <div class="activity-range">> 20 000 pas / jour</div>
         </div>
-        <div class="activity-coeff">×1.9</div>
       </div>
     </div>
   </div>
@@ -2719,7 +2716,7 @@
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <div class="nav-item active">
+  <div class="nav-item active" onclick="switchTabFromNav(this,'pesees')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
       <polyline points="9 22 9 12 15 12 15 22"/>
@@ -2736,12 +2733,11 @@
     <span>Stats</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-item" onclick="showToast('Bientôt disponible', '🚀')">
+  <div class="nav-item" onclick="switchTabFromNav(this,'pesees')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10"/>
-      <polyline points="12 6 12 12 16 14"/>
+      <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
     </svg>
-    <span>Historique</span>
+    <span>Pesées</span>
     <div class="nav-dot"></div>
   </div>
   <div class="nav-item" onclick="switchTabFromNav(this,'profil')">
@@ -3684,17 +3680,28 @@ function calSetSpecialLabel(dateStr, val) {
 
 // ===== NAV BOTTOM =====
 function switchTabFromNav(navItem, tab) {
-  // Find matching top tab button and trigger it
-  const topBtns = document.querySelectorAll('.nav-tab');
-  topBtns.forEach(btn => {
-    const attr = btn.getAttribute('onclick');
-    if (attr && attr.includes("'" + tab + "'")) {
-      btn.click();
-    }
-  });
   // Update bottom nav active state
   document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
   navItem.classList.add('active');
+
+  // Show/hide screens directly (same logic as switchTab)
+  document.getElementById('pesesScreen').style.display      = tab === 'pesees'     ? 'block' : 'none';
+  document.getElementById('profilScreen').style.display     = tab === 'profil'     ? 'block' : 'none';
+  document.getElementById('besoinsScreen').style.display    = tab === 'besoins'    ? 'block' : 'none';
+  document.getElementById('calendrierScreen').style.display = tab === 'calendrier' ? 'block' : 'none';
+
+  document.querySelector('.fab').style.display = tab === 'pesees' ? 'flex' : 'none';
+
+  // Also sync top nav tabs if they exist
+  document.querySelectorAll('.nav-tab').forEach(btn => {
+    btn.classList.remove('active');
+    const attr = btn.getAttribute('onclick');
+    if (attr && attr.includes("'" + tab + "'")) btn.classList.add('active');
+  });
+
+  if (tab === 'profil')      loadProfilUI();
+  else if (tab === 'besoins')     loadBesoins();
+  else if (tab === 'calendrier')  loadCalendrier();
 }
 
 // ===== INIT =====
